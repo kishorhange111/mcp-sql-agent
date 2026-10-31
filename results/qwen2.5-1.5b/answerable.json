@@ -1,0 +1,1656 @@
+[
+  {
+    "id": "e01",
+    "difficulty": "easy",
+    "question": "How many customers are there?",
+    "reference_sql": "SELECT count(*) FROM Customer",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT Customer.CustomerId) FROM Customer",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT Customer.CustomerId) FROM Customer",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 34.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT Customer.CustomerId) FROM Customer;\n```",
+        "sql": "SELECT COUNT(DISTINCT Customer.CustomerId) FROM Customer",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e02",
+    "difficulty": "easy",
+    "question": "How many tracks are in the database?",
+    "reference_sql": "SELECT count(*) FROM Track",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(*) FROM Track",
+    "first_attempt_sql": "SELECT COUNT(*) FROM Track",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 27.3,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "SELECT COUNT(*) FROM Track",
+        "sql": "SELECT COUNT(*) FROM Track",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e03",
+    "difficulty": "easy",
+    "question": "List the names of all genres.",
+    "reference_sql": "SELECT Name FROM Genre",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT Name FROM Genre",
+    "first_attempt_sql": "SELECT Name FROM Genre",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 28.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT Name FROM Genre;\n```",
+        "sql": "SELECT Name FROM Genre",
+        "code": "ok",
+        "rows": 25
+      }
+    ]
+  },
+  {
+    "id": "e04",
+    "difficulty": "easy",
+    "question": "How many customers live in Brazil?",
+    "reference_sql": "SELECT count(*) FROM Customer WHERE Country = 'Brazil'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersInBrazil\nFROM Customer AS T1\nJOIN Invoice AS T2 ON T1.CustomerId = T2.CustomerId\nJOIN InvoiceLine AS T3 ON T2.InvoiceId = T3.InvoiceId\nJOIN Track AS T4 ON T3.TrackId = T4.TrackId\nJOIN MediaType AS T5 ON T4.MediaTypeId = T5.MediaTypeId\nWHERE T1.Country = 'Brazil'",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersInBrazil\nFROM Customer AS T1\nJOIN Invoice AS T2 ON T1.CustomerId = T2.CustomerId\nJOIN InvoiceLine AS T3 ON T2.InvoiceId = T3.InvoiceId\nJOIN Track AS T4 ON T3.TrackId = T4.TrackId\nJOIN MediaType AS T5 ON T4.MediaTypeId = T5.MediaTypeId\nWHERE T1.Country = 'Brazil'",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 59.6,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersInBrazil\nFROM Customer AS T1\nJOIN Invoice AS T2 ON T1.CustomerId = T2.CustomerId\nJOIN InvoiceLine AS T3 ON T2.InvoiceId = T3.InvoiceId\nJOIN Track AS T4 ON T3.TrackId = T4.TrackId\nJOIN MediaType AS T5 ON T4.MediaTypeId = T5.MediaTypeId\nWHERE T1.Country = 'Brazil';\n```",
+        "sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersInBrazil\nFROM Customer AS T1\nJOIN Invoice AS T2 ON T1.CustomerId = T2.CustomerId\nJOIN InvoiceLine AS T3 ON T2.InvoiceId = T3.InvoiceId\nJOIN Track AS T4 ON T3.TrackId = T4.TrackId\nJOIN MediaType AS T5 ON T4.MediaTypeId = T5.MediaTypeId\nWHERE T1.Country = 'Brazil'",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e05",
+    "difficulty": "easy",
+    "question": "What is the longest track's name?",
+    "reference_sql": "SELECT Name FROM Track ORDER BY Milliseconds DESC LIMIT 1",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT MAX(T.Name) AS LongestTrackName FROM Track T",
+    "first_attempt_sql": "SELECT MAX(T.Name) AS LongestTrackName FROM Track T",
+    "first_attempt_code": "ok",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 31.4,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT MAX(T.Name) AS LongestTrackName FROM Track T;\n```",
+        "sql": "SELECT MAX(T.Name) AS LongestTrackName FROM Track T",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e06",
+    "difficulty": "easy",
+    "question": "What is the average invoice total?",
+    "reference_sql": "SELECT avg(Total) FROM Invoice",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT AVG(Total) FROM Invoice",
+    "first_attempt_sql": "SELECT AVG(Total) FROM Invoice",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 29.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT AVG(Total) FROM Invoice;\n```",
+        "sql": "SELECT AVG(Total) FROM Invoice",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e07",
+    "difficulty": "easy",
+    "question": "How many distinct countries do our customers come from?",
+    "reference_sql": "SELECT count(DISTINCT Country) FROM Customer",
+    "status": "failed",
+    "attempts": 3,
+    "final_sql": "SELECT COUNT(DISTINCT T2.Country) AS Distinct_Countries FROM Customer AS T1 \nJOIN Invoice AS T3 ON T1.CustomerId = T3.CustomerId \nJOIN InvoiceLine AS T4 ON T3.InvoiceId = T4.InvoiceId \nJOIN Track AS T5 ON T4.TrackId = T5.TrackId \nJOIN MediaType AS T6 ON T5.MediaTypeId = T6.MediaTypeId \nJOIN Playlist AS T7 ON T1.CustomerId = T7.CustomerId \nJOIN PlaylistTrack AS T8 ON T7.PlaylistId = T8.PlaylistId \nJOIN Track AS T9 ON T8.TrackId = T9.TrackId \nJOIN Album AS T10 ON T9.AlbumId = T10.AlbumId \nWHERE T1.Country IS NOT NULL AND T1.Country != ''",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T2.Country) AS Distinct_Countries FROM Customer AS T1 JOIN Invoice AS T3 ON T1.CustomerId = T3.CustomerId JOIN InvoiceLine AS T4 ON T3.InvoiceId = T4.InvoiceId JOIN Track AS T5 ON T4.TrackId = T5.TrackId JOIN MediaType AS T6 ON T5.MediaTypeId = T6.MediaTypeId",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 294.6,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T2.Country) AS Distinct_Countries FROM Customer AS T1 JOIN Invoice AS T3 ON T1.CustomerId = T3.CustomerId JOIN InvoiceLine AS T4 ON T3.InvoiceId = T4.InvoiceId JOIN Track AS T5 ON T4.TrackId = T5.TrackId JOIN MediaType AS T6 ON T5.MediaTypeId = T6.MediaTypeId;\n```",
+        "sql": "SELECT COUNT(DISTINCT T2.Country) AS Distinct_Countries FROM Customer AS T1 JOIN Invoice AS T3 ON T1.CustomerId = T3.CustomerId JOIN InvoiceLine AS T4 ON T3.InvoiceId = T4.InvoiceId JOIN Track AS T5 ON T4.TrackId = T5.TrackId JOIN MediaType AS T6 ON T5.MediaTypeId = T6.MediaTypeId",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T2.Country) AS Distinct_Countries FROM Customer AS T1 \nJOIN Invoice AS T3 ON T1.CustomerId = T3.CustomerId \nJOIN InvoiceLine AS T4 ON T3.InvoiceId = T4.InvoiceId \nJOIN Track AS T5 ON T4.TrackId = T5.TrackId \nJOIN MediaType AS T6 ON T5.MediaTypeId = T6.MediaTypeId \nJOIN Playlist AS T7 ON T1.CustomerId = T7.CustomerId \nJOIN PlaylistTrack AS T8 ON T7.PlaylistId = T8.PlaylistId \nJOIN Track AS T9 ON T8.TrackId = T9.TrackId \nJOIN Album AS T10 ON T9.AlbumId = T10.AlbumId \nWHERE T1.Country IS NOT NULL AND T1.Country != ''\n```",
+        "sql": "SELECT COUNT(DISTINCT T2.Country) AS Distinct_Countries FROM Customer AS T1 \nJOIN Invoice AS T3 ON T1.CustomerId = T3.CustomerId \nJOIN InvoiceLine AS T4 ON T3.InvoiceId = T4.InvoiceId \nJOIN Track AS T5 ON T4.TrackId = T5.TrackId \nJOIN MediaType AS T6 ON T5.MediaTypeId = T6.MediaTypeId \nJOIN Playlist AS T7 ON T1.CustomerId = T7.CustomerId \nJOIN PlaylistTrack AS T8 ON T7.PlaylistId = T8.PlaylistId \nJOIN Track AS T9 ON T8.TrackId = T9.TrackId \nJOIN Album AS T10 ON T9.AlbumId = T10.AlbumId \nWHERE T1.Country IS NOT NULL AND T1.Country != ''",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T2.Country) AS Distinct_Countries FROM Customer AS T1 \nJOIN Invoice AS T3 ON T1.CustomerId = T3.CustomerId \nJOIN InvoiceLine AS T4 ON T3.InvoiceId = T4.InvoiceId \nJOIN Track AS T5 ON T4.TrackId = T5.TrackId \nJOIN MediaType AS T6 ON T5.MediaTypeId = T6.MediaTypeId \nJOIN Playlist AS T7 ON T1.CustomerId = T7.CustomerId \nJOIN PlaylistTrack AS T8 ON T7.PlaylistId = T8.PlaylistId \nJOIN Track AS T9 ON T8.TrackId = T9.TrackId \nJOIN Album AS T10 ON T9.AlbumId = T10.AlbumId \nWHERE T1.Country IS NOT NULL AND T1.Country != ''\n```",
+        "sql": "SELECT COUNT(DISTINCT T2.Country) AS Distinct_Countries FROM Customer AS T1 \nJOIN Invoice AS T3 ON T1.CustomerId = T3.CustomerId \nJOIN InvoiceLine AS T4 ON T3.InvoiceId = T4.InvoiceId \nJOIN Track AS T5 ON T4.TrackId = T5.TrackId \nJOIN MediaType AS T6 ON T5.MediaTypeId = T6.MediaTypeId \nJOIN Playlist AS T7 ON T1.CustomerId = T7.CustomerId \nJOIN PlaylistTrack AS T8 ON T7.PlaylistId = T8.PlaylistId \nJOIN Track AS T9 ON T8.TrackId = T9.TrackId \nJOIN Album AS T10 ON T9.AlbumId = T10.AlbumId \nWHERE T1.Country IS NOT NULL AND T1.Country != ''",
+        "code": "execution_error",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "e08",
+    "difficulty": "easy",
+    "question": "What are the names of all media types?",
+    "reference_sql": "SELECT Name FROM MediaType",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT DISTINCT T2.Name FROM Track AS T1 JOIN MediaType AS T2 ON T1.MediaTypeId = T2.MediaTypeId",
+    "first_attempt_sql": "SELECT DISTINCT T2.Name FROM Track AS T1 JOIN MediaType AS T2 ON T1.MediaTypeId = T2.MediaTypeId",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 42.9,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT DISTINCT T2.Name FROM Track AS T1 JOIN MediaType AS T2 ON T1.MediaTypeId = T2.MediaTypeId;\n```",
+        "sql": "SELECT DISTINCT T2.Name FROM Track AS T1 JOIN MediaType AS T2 ON T1.MediaTypeId = T2.MediaTypeId",
+        "code": "ok",
+        "rows": 5
+      }
+    ]
+  },
+  {
+    "id": "e09",
+    "difficulty": "easy",
+    "question": "What is the largest single invoice total?",
+    "reference_sql": "SELECT max(Total) FROM Invoice",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT MAX(Total) FROM Invoice",
+    "first_attempt_sql": "SELECT MAX(Total) FROM Invoice",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 37.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT MAX(Total) FROM Invoice;\n```",
+        "sql": "SELECT MAX(Total) FROM Invoice",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e10",
+    "difficulty": "easy",
+    "question": "List the first and last names of all employees.",
+    "reference_sql": "SELECT FirstName, LastName FROM Employee",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT FirstName, LastName FROM Employee",
+    "first_attempt_sql": "SELECT FirstName, LastName FROM Employee",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 34.7,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT FirstName, LastName FROM Employee;\n```",
+        "sql": "SELECT FirstName, LastName FROM Employee",
+        "code": "ok",
+        "rows": 8
+      }
+    ]
+  },
+  {
+    "id": "e11",
+    "difficulty": "easy",
+    "question": "How many playlists are there?",
+    "reference_sql": "SELECT count(*) FROM Playlist",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT PlaylistId) FROM PlaylistTrack",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT PlaylistId) FROM PlaylistTrack",
+    "first_attempt_code": "ok",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 35.8,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT PlaylistId) FROM PlaylistTrack;\n```",
+        "sql": "SELECT COUNT(DISTINCT PlaylistId) FROM PlaylistTrack",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e12",
+    "difficulty": "easy",
+    "question": "What is the total revenue across all invoices?",
+    "reference_sql": "SELECT sum(Total) FROM Invoice",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT SUM(Total) AS Total_Revenue\nFROM Invoice",
+    "first_attempt_sql": "SELECT SUM(Total) AS Total_Revenue\nFROM Invoice",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 35.4,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT SUM(Total) AS Total_Revenue\nFROM Invoice;\n```",
+        "sql": "SELECT SUM(Total) AS Total_Revenue\nFROM Invoice",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e13",
+    "difficulty": "easy",
+    "question": "Which cities in Canada have customers?",
+    "reference_sql": "SELECT DISTINCT City FROM Customer WHERE Country = 'Canada'",
+    "status": "failed",
+    "attempts": 3,
+    "final_sql": "SELECT DISTINCT T2.BillingCity \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nWHERE T2.Country = 'Canada'",
+    "first_attempt_sql": "SELECT DISTINCT T2.BillingCity \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nWHERE T2.Country = 'Canada'",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 151.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT DISTINCT T2.BillingCity \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nWHERE T2.Country = 'Canada';\n```",
+        "sql": "SELECT DISTINCT T2.BillingCity \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nWHERE T2.Country = 'Canada'",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT DISTINCT T2.BillingCity \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nWHERE T2.Country = 'Canada';\n```",
+        "sql": "SELECT DISTINCT T2.BillingCity \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nWHERE T2.Country = 'Canada'",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT DISTINCT T2.BillingCity \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nWHERE T2.Country = 'Canada';\n```",
+        "sql": "SELECT DISTINCT T2.BillingCity \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nWHERE T2.Country = 'Canada'",
+        "code": "execution_error",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "e14",
+    "difficulty": "easy",
+    "question": "How many tracks cost more than 0.99?",
+    "reference_sql": "SELECT count(*) FROM Track WHERE UnitPrice > 0.99",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(*) FROM Track WHERE UnitPrice > 0.99",
+    "first_attempt_sql": "SELECT COUNT(*) FROM Track WHERE UnitPrice > 0.99",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 34.8,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(*) FROM Track WHERE UnitPrice > 0.99;\n```",
+        "sql": "SELECT COUNT(*) FROM Track WHERE UnitPrice > 0.99",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e15",
+    "difficulty": "easy",
+    "question": "What is the title of the employee named Nancy Edwards?",
+    "reference_sql": "SELECT Title FROM Employee WHERE FirstName = 'Nancy' AND LastName = 'Edwards'",
+    "status": "answered",
+    "attempts": 3,
+    "final_sql": "SELECT T1.FirstName, T1.LastName FROM Employee AS T1 JOIN Customer AS T2 ON T1.EmployeeId = T2.SupportRepId WHERE T1.FirstName = 'Nancy' AND T1.LastName = 'Edwards'",
+    "first_attempt_sql": "SELECT T1.FirstName, T1.LastName FROM Employee AS T1 JOIN Customer AS T2 ON T1.SupportRepId = T2.SupportRepId WHERE T1.FirstName = 'Nancy' AND T1.LastName = 'Edwards'",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 166.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T1.FirstName, T1.LastName FROM Employee AS T1 JOIN Customer AS T2 ON T1.SupportRepId = T2.SupportRepId WHERE T1.FirstName = 'Nancy' AND T1.LastName = 'Edwards';\n```",
+        "sql": "SELECT T1.FirstName, T1.LastName FROM Employee AS T1 JOIN Customer AS T2 ON T1.SupportRepId = T2.SupportRepId WHERE T1.FirstName = 'Nancy' AND T1.LastName = 'Edwards'",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT T1.FirstName, T1.LastName FROM Employee AS T1 JOIN Customer AS T2 ON T1.EmployeeId = T2.SupportRepId WHERE T1.FirstName = 'Nancy' AND T1.LastName = 'Edwards'\n```",
+        "sql": "SELECT T1.FirstName, T1.LastName FROM Employee AS T1 JOIN Customer AS T2 ON T1.EmployeeId = T2.SupportRepId WHERE T1.FirstName = 'Nancy' AND T1.LastName = 'Edwards'",
+        "code": "ok",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT T1.FirstName, T1.LastName FROM Employee AS T1 JOIN Customer AS T2 ON T1.EmployeeId = T2.SupportRepId WHERE T1.FirstName = 'Nancy' AND T1.LastName = 'Edwards';\n```",
+        "sql": "SELECT T1.FirstName, T1.LastName FROM Employee AS T1 JOIN Customer AS T2 ON T1.EmployeeId = T2.SupportRepId WHERE T1.FirstName = 'Nancy' AND T1.LastName = 'Edwards'",
+        "code": "ok",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "e16",
+    "difficulty": "easy",
+    "question": "How many albums are there?",
+    "reference_sql": "SELECT count(*) FROM Album",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT Album.AlbumId) FROM Album",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT Album.AlbumId) FROM Album",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 34.9,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "SELECT COUNT(DISTINCT Album.AlbumId) FROM Album",
+        "sql": "SELECT COUNT(DISTINCT Album.AlbumId) FROM Album",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e17",
+    "difficulty": "easy",
+    "question": "How many invoices were billed to Germany?",
+    "reference_sql": "SELECT count(*) FROM Invoice WHERE BillingCountry = 'Germany'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.InvoiceId) FROM Invoice AS T1 JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId WHERE T2.Country = 'Germany'",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.InvoiceId) FROM Invoice AS T1 JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId WHERE T2.Country = 'Germany'",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 54.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T1.InvoiceId) FROM Invoice AS T1 JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId WHERE T2.Country = 'Germany';\n```",
+        "sql": "SELECT COUNT(DISTINCT T1.InvoiceId) FROM Invoice AS T1 JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId WHERE T2.Country = 'Germany'",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e18",
+    "difficulty": "easy",
+    "question": "What is the shortest track's length in milliseconds?",
+    "reference_sql": "SELECT min(Milliseconds) FROM Track",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT MIN(Milliseconds) FROM Track",
+    "first_attempt_sql": "SELECT MIN(Milliseconds) FROM Track",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 30.9,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT MIN(Milliseconds) FROM Track;\n```",
+        "sql": "SELECT MIN(Milliseconds) FROM Track",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e19",
+    "difficulty": "easy",
+    "question": "Which composer is credited on the track named 'Balls to the Wall'?",
+    "reference_sql": "SELECT Composer FROM Track WHERE Name = 'Balls to the Wall'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT T1.Composer FROM Track AS T1 JOIN Album AS T2 ON T1.AlbumId = T2.AlbumId WHERE T1.Name = 'Balls to the Wall'",
+    "first_attempt_sql": "SELECT T1.Composer FROM Track AS T1 JOIN Album AS T2 ON T1.AlbumId = T2.AlbumId WHERE T1.Name = 'Balls to the Wall'",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 52.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T1.Composer FROM Track AS T1 JOIN Album AS T2 ON T1.AlbumId = T2.AlbumId WHERE T1.Name = 'Balls to the Wall';\n```",
+        "sql": "SELECT T1.Composer FROM Track AS T1 JOIN Album AS T2 ON T1.AlbumId = T2.AlbumId WHERE T1.Name = 'Balls to the Wall'",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "e20",
+    "difficulty": "easy",
+    "question": "How many customers have no company listed?",
+    "reference_sql": "SELECT count(*) FROM Customer WHERE Company IS NULL",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT CASE WHEN Company IS NULL THEN CustomerId ELSE NULL END) AS NumberOfCustomersWithoutCompany FROM Customer",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT CASE WHEN Company IS NULL THEN CustomerId ELSE NULL END) AS NumberOfCustomersWithoutCompany FROM Customer",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 47.4,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT CASE WHEN Company IS NULL THEN CustomerId ELSE NULL END) AS NumberOfCustomersWithoutCompany FROM Customer;\n```",
+        "sql": "SELECT COUNT(DISTINCT CASE WHEN Company IS NULL THEN CustomerId ELSE NULL END) AS NumberOfCustomersWithoutCompany FROM Customer",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m01",
+    "difficulty": "medium",
+    "question": "How many albums does the artist AC/DC have?",
+    "reference_sql": "SELECT count(*) FROM Album a JOIN Artist ar ON a.ArtistId = ar.ArtistId WHERE ar.Name = 'AC/DC'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.AlbumId) FROM Album AS T1 INNER JOIN Artist AS T2 ON T1.ArtistId = T2.ArtistId WHERE T2.Name = 'AC/DC'",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.AlbumId) FROM Album AS T1 INNER JOIN Artist AS T2 ON T1.ArtistId = T2.ArtistId WHERE T2.Name = 'AC/DC'",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 58.4,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "SELECT COUNT(DISTINCT T1.AlbumId) FROM Album AS T1 INNER JOIN Artist AS T2 ON T1.ArtistId = T2.ArtistId WHERE T2.Name = 'AC/DC'",
+        "sql": "SELECT COUNT(DISTINCT T1.AlbumId) FROM Album AS T1 INNER JOIN Artist AS T2 ON T1.ArtistId = T2.ArtistId WHERE T2.Name = 'AC/DC'",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m02",
+    "difficulty": "medium",
+    "question": "How many tracks are there in each genre? Give the genre name and the count.",
+    "reference_sql": "SELECT g.Name, count(*) FROM Track t JOIN Genre g ON t.GenreId = g.GenreId GROUP BY g.GenreId, g.Name",
+    "status": "answered",
+    "attempts": 2,
+    "final_sql": "SELECT T1.Name AS GenreName, COUNT(T1.GenreId) AS TrackCount\nFROM Genre AS T1\nJOIN Track AS T2 ON T1.GenreId = T2.GenreId\nGROUP BY T1.Name",
+    "first_attempt_sql": "SELECT Genre.Name AS GenreName, COUNT(*) AS TrackCount\nFROM Track\nJOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId\nGROUP BY Genre.Name",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 138.8,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT Genre.Name AS GenreName, COUNT(*) AS TrackCount\nFROM Track\nJOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId\nGROUP BY Genre.Name;\n```",
+        "sql": "SELECT Genre.Name AS GenreName, COUNT(*) AS TrackCount\nFROM Track\nJOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId\nGROUP BY Genre.Name",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT T1.Name AS GenreName, COUNT(T1.GenreId) AS TrackCount\nFROM Genre AS T1\nJOIN Track AS T2 ON T1.GenreId = T2.GenreId\nGROUP BY T1.Name\n```",
+        "sql": "SELECT T1.Name AS GenreName, COUNT(T1.GenreId) AS TrackCount\nFROM Genre AS T1\nJOIN Track AS T2 ON T1.GenreId = T2.GenreId\nGROUP BY T1.Name",
+        "code": "ok",
+        "rows": 25
+      }
+    ]
+  },
+  {
+    "id": "m03",
+    "difficulty": "medium",
+    "question": "Which artist has the most albums? Give only the artist's name.",
+    "reference_sql": "SELECT ar.Name FROM Artist ar JOIN Album a ON ar.ArtistId = a.ArtistId GROUP BY ar.ArtistId, ar.Name ORDER BY count(*) DESC LIMIT 1",
+    "status": "answered",
+    "attempts": 2,
+    "final_sql": "SELECT DISTINCT T.Name \nFROM Album AS A \nJOIN Artist AS T ON A.ArtistId = T.ArtistId \nGROUP BY A.ArtistId, T.Name \nORDER BY COUNT(*) DESC LIMIT 1",
+    "first_attempt_sql": "SELECT A.Name \nFROM Album AS A \nJOIN Artist AS T ON A.ArtistId = T.ArtistId \nGROUP BY A.ArtistId, A.Name \nORDER BY COUNT(*) DESC LIMIT 1",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 121.4,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT A.Name \nFROM Album AS A \nJOIN Artist AS T ON A.ArtistId = T.ArtistId \nGROUP BY A.ArtistId, A.Name \nORDER BY COUNT(*) DESC LIMIT 1;\n```",
+        "sql": "SELECT A.Name \nFROM Album AS A \nJOIN Artist AS T ON A.ArtistId = T.ArtistId \nGROUP BY A.ArtistId, A.Name \nORDER BY COUNT(*) DESC LIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT DISTINCT T.Name \nFROM Album AS A \nJOIN Artist AS T ON A.ArtistId = T.ArtistId \nGROUP BY A.ArtistId, T.Name \nORDER BY COUNT(*) DESC LIMIT 1\n```",
+        "sql": "SELECT DISTINCT T.Name \nFROM Album AS A \nJOIN Artist AS T ON A.ArtistId = T.ArtistId \nGROUP BY A.ArtistId, T.Name \nORDER BY COUNT(*) DESC LIMIT 1",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m04",
+    "difficulty": "medium",
+    "question": "What is the total invoiced amount for each billing country? Give the country and the total.",
+    "reference_sql": "SELECT BillingCountry, sum(Total) FROM Invoice GROUP BY BillingCountry",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT BillingCountry, SUM(Total) AS TotalInvoiced\nFROM Invoice\nGROUP BY BillingCountry",
+    "first_attempt_sql": "SELECT BillingCountry, SUM(Total) AS TotalInvoiced\nFROM Invoice\nGROUP BY BillingCountry",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 49.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT BillingCountry, SUM(Total) AS TotalInvoiced\nFROM Invoice\nGROUP BY BillingCountry;\n```",
+        "sql": "SELECT BillingCountry, SUM(Total) AS TotalInvoiced\nFROM Invoice\nGROUP BY BillingCountry",
+        "code": "ok",
+        "rows": 24
+      }
+    ]
+  },
+  {
+    "id": "m05",
+    "difficulty": "medium",
+    "question": "Which country has the highest total invoice amount? Give only the country.",
+    "reference_sql": "SELECT BillingCountry FROM Invoice GROUP BY BillingCountry ORDER BY sum(Total) DESC LIMIT 1",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT DISTINCT T2.Country \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nGROUP BY T2.Country \nORDER BY SUM(T1.Total) DESC \nLIMIT 1",
+    "first_attempt_sql": "SELECT DISTINCT T2.Country \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nGROUP BY T2.Country \nORDER BY SUM(T1.Total) DESC \nLIMIT 1",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 57.1,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT DISTINCT T2.Country \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nGROUP BY T2.Country \nORDER BY SUM(T1.Total) DESC \nLIMIT 1;\n```",
+        "sql": "SELECT DISTINCT T2.Country \nFROM Invoice AS T1 \nJOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId \nGROUP BY T2.Country \nORDER BY SUM(T1.Total) DESC \nLIMIT 1",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m06",
+    "difficulty": "medium",
+    "question": "List the names of the tracks on the album 'Let There Be Rock'.",
+    "reference_sql": "SELECT t.Name FROM Track t JOIN Album a ON t.AlbumId = a.AlbumId WHERE a.Title = 'Let There Be Rock'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT T1.Name \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T2.Title = 'Let There Be Rock'",
+    "first_attempt_sql": "SELECT T1.Name \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T2.Title = 'Let There Be Rock'",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 163.2,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T1.Name \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T2.Title = 'Let There Be Rock';\n```",
+        "sql": "SELECT T1.Name \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T2.Title = 'Let There Be Rock'",
+        "code": "ok",
+        "rows": 8
+      }
+    ]
+  },
+  {
+    "id": "m07",
+    "difficulty": "medium",
+    "question": "How many customers does each support representative handle? Give the employee's first name, last name and the count.",
+    "reference_sql": "SELECT e.FirstName, e.LastName, count(*) FROM Employee e JOIN Customer c ON c.SupportRepId = e.EmployeeId GROUP BY e.EmployeeId, e.FirstName, e.LastName",
+    "status": "answered",
+    "attempts": 2,
+    "final_sql": "SELECT \n    E.FirstName,\n    E.LastName,\n    COUNT(C.CustomerId) AS NumberOfCustomers\nFROM \n    Employee E\nJOIN \n    Customer C ON E.EmployeeId = C.SupportRepId\nGROUP BY \n    E.FirstName, E.LastName",
+    "first_attempt_sql": "SELECT \n    E.FirstName,\n    E.LastName,\n    COUNT(C.CustomerId) AS NumberOfCustomers\nFROM \n    Employee E\nJOIN \n    Customer C ON E.SupportRepId = C.SupportRepId\nGROUP BY \n    E.FirstName, E.LastName",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 137.8,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT \n    E.FirstName,\n    E.LastName,\n    COUNT(C.CustomerId) AS NumberOfCustomers\nFROM \n    Employee E\nJOIN \n    Customer C ON E.SupportRepId = C.SupportRepId\nGROUP BY \n    E.FirstName, E.LastName;\n```",
+        "sql": "SELECT \n    E.FirstName,\n    E.LastName,\n    COUNT(C.CustomerId) AS NumberOfCustomers\nFROM \n    Employee E\nJOIN \n    Customer C ON E.SupportRepId = C.SupportRepId\nGROUP BY \n    E.FirstName, E.LastName",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT \n    E.FirstName,\n    E.LastName,\n    COUNT(C.CustomerId) AS NumberOfCustomers\nFROM \n    Employee E\nJOIN \n    Customer C ON E.EmployeeId = C.SupportRepId\nGROUP BY \n    E.FirstName, E.LastName\n```",
+        "sql": "SELECT \n    E.FirstName,\n    E.LastName,\n    COUNT(C.CustomerId) AS NumberOfCustomers\nFROM \n    Employee E\nJOIN \n    Customer C ON E.EmployeeId = C.SupportRepId\nGROUP BY \n    E.FirstName, E.LastName",
+        "code": "ok",
+        "rows": 3
+      }
+    ]
+  },
+  {
+    "id": "m08",
+    "difficulty": "medium",
+    "question": "How many customers are there in each country? Give the country and the count.",
+    "reference_sql": "SELECT Country, count(*) FROM Customer GROUP BY Country",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT Country, COUNT(DISTINCT Customer.CustomerId) AS CountOfCustomers\nFROM Customer\nGROUP BY Country",
+    "first_attempt_sql": "SELECT Country, COUNT(DISTINCT Customer.CustomerId) AS CountOfCustomers\nFROM Customer\nGROUP BY Country",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 53.3,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT Country, COUNT(DISTINCT Customer.CustomerId) AS CountOfCustomers\nFROM Customer\nGROUP BY Country;\n```",
+        "sql": "SELECT Country, COUNT(DISTINCT Customer.CustomerId) AS CountOfCustomers\nFROM Customer\nGROUP BY Country",
+        "code": "ok",
+        "rows": 24
+      }
+    ]
+  },
+  {
+    "id": "m09",
+    "difficulty": "medium",
+    "question": "What is the average track length in milliseconds for the Rock genre?",
+    "reference_sql": "SELECT avg(t.Milliseconds) FROM Track t JOIN Genre g ON t.GenreId = g.GenreId WHERE g.Name = 'Rock'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT AVG(T1.Milliseconds) AS AverageLength\nFROM Track AS T1\nJOIN Genre AS G ON T1.GenreId = G.GenreId\nWHERE G.Name = 'Rock'",
+    "first_attempt_sql": "SELECT AVG(T1.Milliseconds) AS AverageLength\nFROM Track AS T1\nJOIN Genre AS G ON T1.GenreId = G.GenreId\nWHERE G.Name = 'Rock'",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 62.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT AVG(T1.Milliseconds) AS AverageLength\nFROM Track AS T1\nJOIN Genre AS G ON T1.GenreId = G.GenreId\nWHERE G.Name = 'Rock';\n```",
+        "sql": "SELECT AVG(T1.Milliseconds) AS AverageLength\nFROM Track AS T1\nJOIN Genre AS G ON T1.GenreId = G.GenreId\nWHERE G.Name = 'Rock'",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m10",
+    "difficulty": "medium",
+    "question": "Which genre has the most tracks? Give only the genre name.",
+    "reference_sql": "SELECT g.Name FROM Genre g JOIN Track t ON t.GenreId = g.GenreId GROUP BY g.GenreId, g.Name ORDER BY count(*) DESC LIMIT 1",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT T2.Name \nFROM Track AS T1 \nJOIN MediaType AS T3 ON T1.MediaTypeId = T3.MediaTypeId \nJOIN Genre AS T2 ON T1.GenreId = T2.GenreId \nGROUP BY T2.Name \nORDER BY COUNT(*) DESC \nLIMIT 1",
+    "first_attempt_sql": "SELECT T2.Name \nFROM Track AS T1 \nJOIN MediaType AS T3 ON T1.MediaTypeId = T3.MediaTypeId \nJOIN Genre AS T2 ON T1.GenreId = T2.GenreId \nGROUP BY T2.Name \nORDER BY COUNT(*) DESC \nLIMIT 1",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 72.9,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T2.Name \nFROM Track AS T1 \nJOIN MediaType AS T3 ON T1.MediaTypeId = T3.MediaTypeId \nJOIN Genre AS T2 ON T1.GenreId = T2.GenreId \nGROUP BY T2.Name \nORDER BY COUNT(*) DESC \nLIMIT 1;\n```",
+        "sql": "SELECT T2.Name \nFROM Track AS T1 \nJOIN MediaType AS T3 ON T1.MediaTypeId = T3.MediaTypeId \nJOIN Genre AS T2 ON T1.GenreId = T2.GenreId \nGROUP BY T2.Name \nORDER BY COUNT(*) DESC \nLIMIT 1",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m11",
+    "difficulty": "medium",
+    "question": "How many tracks are on the playlist named 'Music Videos'?",
+    "reference_sql": "SELECT count(*) FROM PlaylistTrack pt JOIN Playlist p ON pt.PlaylistId = p.PlaylistId WHERE p.Name = 'Music Videos'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(T1.TrackId) AS NumberOfTracks\nFROM Track AS T1\nJOIN PlaylistTrack AS T2 ON T1.TrackId = T2.TrackId\nWHERE T2.PlaylistId = (SELECT PlaylistId FROM Playlist WHERE Name = 'Music Videos')",
+    "first_attempt_sql": "SELECT COUNT(T1.TrackId) AS NumberOfTracks\nFROM Track AS T1\nJOIN PlaylistTrack AS T2 ON T1.TrackId = T2.TrackId\nWHERE T2.PlaylistId = (SELECT PlaylistId FROM Playlist WHERE Name = 'Music Videos')",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 63.3,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(T1.TrackId) AS NumberOfTracks\nFROM Track AS T1\nJOIN PlaylistTrack AS T2 ON T1.TrackId = T2.TrackId\nWHERE T2.PlaylistId = (SELECT PlaylistId FROM Playlist WHERE Name = 'Music Videos')\n```",
+        "sql": "SELECT COUNT(T1.TrackId) AS NumberOfTracks\nFROM Track AS T1\nJOIN PlaylistTrack AS T2 ON T1.TrackId = T2.TrackId\nWHERE T2.PlaylistId = (SELECT PlaylistId FROM Playlist WHERE Name = 'Music Videos')",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m12",
+    "difficulty": "medium",
+    "question": "Which media type is used by the most tracks? Give only its name.",
+    "reference_sql": "SELECT m.Name FROM MediaType m JOIN Track t ON t.MediaTypeId = m.MediaTypeId GROUP BY m.MediaTypeId, m.Name ORDER BY count(*) DESC LIMIT 1",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT T2.Name \nFROM Track AS T1 \nJOIN MediaType AS T2 ON T1.MediaTypeId = T2.MediaTypeId \nGROUP BY T2.Name \nORDER BY COUNT(*) DESC \nLIMIT 1",
+    "first_attempt_sql": "SELECT T2.Name \nFROM Track AS T1 \nJOIN MediaType AS T2 ON T1.MediaTypeId = T2.MediaTypeId \nGROUP BY T2.Name \nORDER BY COUNT(*) DESC \nLIMIT 1",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 59.9,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T2.Name \nFROM Track AS T1 \nJOIN MediaType AS T2 ON T1.MediaTypeId = T2.MediaTypeId \nGROUP BY T2.Name \nORDER BY COUNT(*) DESC \nLIMIT 1;\n```",
+        "sql": "SELECT T2.Name \nFROM Track AS T1 \nJOIN MediaType AS T2 ON T1.MediaTypeId = T2.MediaTypeId \nGROUP BY T2.Name \nORDER BY COUNT(*) DESC \nLIMIT 1",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m13",
+    "difficulty": "medium",
+    "question": "What was the total invoice amount in the year 2023?",
+    "reference_sql": "SELECT sum(Total) FROM Invoice WHERE strftime('%Y', InvoiceDate) = '2023'",
+    "status": "refused",
+    "attempts": 1,
+    "final_sql": "SELECT SUM(Total) AS Total_Invoice_Amount FROM Invoice WHERE YEAR(INVOCIEDate) = 2023",
+    "first_attempt_sql": "SELECT SUM(Total) AS Total_Invoice_Amount FROM Invoice WHERE YEAR(INVOCIEDate) = 2023",
+    "first_attempt_code": "function_denied",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 54.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT SUM(Total) AS Total_Invoice_Amount FROM Invoice WHERE YEAR(INVOCIEDate) = 2023;\n```",
+        "sql": "SELECT SUM(Total) AS Total_Invoice_Amount FROM Invoice WHERE YEAR(INVOCIEDate) = 2023",
+        "code": "function_denied",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "m14",
+    "difficulty": "medium",
+    "question": "How many invoices were issued in each year? Give the year and the count.",
+    "reference_sql": "SELECT strftime('%Y', InvoiceDate), count(*) FROM Invoice GROUP BY strftime('%Y', InvoiceDate)",
+    "status": "refused",
+    "attempts": 1,
+    "final_sql": "SELECT YEAR(Invoice.InvoiceDate) AS Year, COUNT(*) AS Count FROM Invoice GROUP BY YEAR(Invoice.InvoiceDate)",
+    "first_attempt_sql": "SELECT YEAR(Invoice.InvoiceDate) AS Year, COUNT(*) AS Count FROM Invoice GROUP BY YEAR(Invoice.InvoiceDate)",
+    "first_attempt_code": "function_denied",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 51.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT YEAR(Invoice.InvoiceDate) AS Year, COUNT(*) AS Count FROM Invoice GROUP BY YEAR(Invoice.InvoiceDate);\n```",
+        "sql": "SELECT YEAR(Invoice.InvoiceDate) AS Year, COUNT(*) AS Count FROM Invoice GROUP BY YEAR(Invoice.InvoiceDate)",
+        "code": "function_denied",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "m15",
+    "difficulty": "medium",
+    "question": "What is the first and last name of the customer with the highest single invoice?",
+    "reference_sql": "SELECT c.FirstName, c.LastName FROM Customer c JOIN Invoice i ON i.CustomerId = c.CustomerId ORDER BY i.Total DESC LIMIT 1",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT T1.FirstName, T1.LastName FROM Customer AS T1 JOIN Invoice AS T2 ON T1.CustomerId = T2.CustomerId WHERE T2.Total = (\n    SELECT MAX(T3.Total) FROM Invoice AS T3 JOIN Customer AS T4 ON T3.CustomerId = T4.CustomerId\n)",
+    "first_attempt_sql": "SELECT T1.FirstName, T1.LastName FROM Customer AS T1 JOIN Invoice AS T2 ON T1.CustomerId = T2.CustomerId WHERE T2.Total = (\n    SELECT MAX(T3.Total) FROM Invoice AS T3 JOIN Customer AS T4 ON T3.CustomerId = T4.CustomerId\n)",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 69.3,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T1.FirstName, T1.LastName FROM Customer AS T1 JOIN Invoice AS T2 ON T1.CustomerId = T2.CustomerId WHERE T2.Total = (\n    SELECT MAX(T3.Total) FROM Invoice AS T3 JOIN Customer AS T4 ON T3.CustomerId = T4.CustomerId\n);\n```",
+        "sql": "SELECT T1.FirstName, T1.LastName FROM Customer AS T1 JOIN Invoice AS T2 ON T1.CustomerId = T2.CustomerId WHERE T2.Total = (\n    SELECT MAX(T3.Total) FROM Invoice AS T3 JOIN Customer AS T4 ON T3.CustomerId = T4.CustomerId\n)",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m16",
+    "difficulty": "medium",
+    "question": "Which albums have more than 20 tracks? Give the album titles.",
+    "reference_sql": "SELECT a.Title FROM Album a JOIN Track t ON t.AlbumId = a.AlbumId GROUP BY a.AlbumId, a.Title HAVING count(*) > 20",
+    "status": "failed",
+    "attempts": 3,
+    "final_sql": "SELECT T1.Title \nFROM Album AS T1 \nJOIN Track AS T2 ON T1.TrackId = T2.TrackId \nWHERE T2.TrackId IN (\n    SELECT TrackId FROM Track GROUP BY TrackId HAVING COUNT(*) > 20\n)",
+    "first_attempt_sql": "SELECT T1.Title \nFROM Album AS T1 \nJOIN Track AS T2 ON T1.TrackId = T2.TrackId \nGROUP BY T1.Title \nHAVING COUNT(T2.TrackId) > 20",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 200.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T1.Title \nFROM Album AS T1 \nJOIN Track AS T2 ON T1.TrackId = T2.TrackId \nGROUP BY T1.Title \nHAVING COUNT(T2.TrackId) > 20;\n```",
+        "sql": "SELECT T1.Title \nFROM Album AS T1 \nJOIN Track AS T2 ON T1.TrackId = T2.TrackId \nGROUP BY T1.Title \nHAVING COUNT(T2.TrackId) > 20",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT T1.Title \nFROM Album AS T1 \nJOIN Track AS T2 ON T1.TrackId = T2.TrackId \nGROUP BY T1.Title \nHAVING COUNT(*) > 20\n```",
+        "sql": "SELECT T1.Title \nFROM Album AS T1 \nJOIN Track AS T2 ON T1.TrackId = T2.TrackId \nGROUP BY T1.Title \nHAVING COUNT(*) > 20",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT T1.Title \nFROM Album AS T1 \nJOIN Track AS T2 ON T1.TrackId = T2.TrackId \nWHERE T2.TrackId IN (\n    SELECT TrackId FROM Track GROUP BY TrackId HAVING COUNT(*) > 20\n)\n```",
+        "sql": "SELECT T1.Title \nFROM Album AS T1 \nJOIN Track AS T2 ON T1.TrackId = T2.TrackId \nWHERE T2.TrackId IN (\n    SELECT TrackId FROM Track GROUP BY TrackId HAVING COUNT(*) > 20\n)",
+        "code": "execution_error",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "m17",
+    "difficulty": "medium",
+    "question": "How many tracks does the artist Metallica have?",
+    "reference_sql": "SELECT count(*) FROM Track t JOIN Album a ON t.AlbumId = a.AlbumId JOIN Artist ar ON a.ArtistId = ar.ArtistId WHERE ar.Name = 'Metallica'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T.TrackId) AS NumberOfTracks\nFROM Track AS T\nJOIN Album AS A ON T.AlbumId = A.AlbumId\nJOIN Artist AS Ar ON A.ArtistId = Ar.ArtistId\nWHERE Ar.Name = 'Metallica'",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T.TrackId) AS NumberOfTracks\nFROM Track AS T\nJOIN Album AS A ON T.AlbumId = A.AlbumId\nJOIN Artist AS Ar ON A.ArtistId = Ar.ArtistId\nWHERE Ar.Name = 'Metallica'",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 63.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T.TrackId) AS NumberOfTracks\nFROM Track AS T\nJOIN Album AS A ON T.AlbumId = A.AlbumId\nJOIN Artist AS Ar ON A.ArtistId = Ar.ArtistId\nWHERE Ar.Name = 'Metallica';\n```",
+        "sql": "SELECT COUNT(DISTINCT T.TrackId) AS NumberOfTracks\nFROM Track AS T\nJOIN Album AS A ON T.AlbumId = A.AlbumId\nJOIN Artist AS Ar ON A.ArtistId = Ar.ArtistId\nWHERE Ar.Name = 'Metallica'",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m18",
+    "difficulty": "medium",
+    "question": "Which employees report to Nancy Edwards? Give their first and last names.",
+    "reference_sql": "SELECT e.FirstName, e.LastName FROM Employee e JOIN Employee m ON e.ReportsTo = m.EmployeeId WHERE m.FirstName = 'Nancy' AND m.LastName = 'Edwards'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT FirstName, LastName FROM Employee WHERE LastName = 'Edwards' AND FirstName = 'Nancy' AND ReportsTo IS NOT NULL",
+    "first_attempt_sql": "SELECT FirstName, LastName FROM Employee WHERE LastName = 'Edwards' AND FirstName = 'Nancy' AND ReportsTo IS NOT NULL",
+    "first_attempt_code": "ok",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 49.2,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT FirstName, LastName FROM Employee WHERE LastName = 'Edwards' AND FirstName = 'Nancy' AND ReportsTo IS NOT NULL;\n```",
+        "sql": "SELECT FirstName, LastName FROM Employee WHERE LastName = 'Edwards' AND FirstName = 'Nancy' AND ReportsTo IS NOT NULL",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m19",
+    "difficulty": "medium",
+    "question": "Which customers have never been assigned a support representative? Give the number of such customers.",
+    "reference_sql": "SELECT count(*) FROM Customer WHERE SupportRepId IS NULL",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersWithoutSupportRepresentative\nFROM Customer AS T1\nLEFT JOIN Employee AS T2 ON T1.SupportRepId = T2.EmployeeId\nWHERE T2.EmployeeId IS NULL",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersWithoutSupportRepresentative\nFROM Customer AS T1\nLEFT JOIN Employee AS T2 ON T1.SupportRepId = T2.EmployeeId\nWHERE T2.EmployeeId IS NULL",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 60.3,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersWithoutSupportRepresentative\nFROM Customer AS T1\nLEFT JOIN Employee AS T2 ON T1.SupportRepId = T2.EmployeeId\nWHERE T2.EmployeeId IS NULL;\n```",
+        "sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersWithoutSupportRepresentative\nFROM Customer AS T1\nLEFT JOIN Employee AS T2 ON T1.SupportRepId = T2.EmployeeId\nWHERE T2.EmployeeId IS NULL",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "m20",
+    "difficulty": "medium",
+    "question": "How many different tracks have been sold at least once?",
+    "reference_sql": "SELECT count(DISTINCT TrackId) FROM InvoiceLine",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.TrackId) FROM Track AS T1 JOIN InvoiceLine AS T2 ON T1.TrackId = T2.TrackId",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.TrackId) FROM Track AS T1 JOIN InvoiceLine AS T2 ON T1.TrackId = T2.TrackId",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 56.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T1.TrackId) FROM Track AS T1 JOIN InvoiceLine AS T2 ON T1.TrackId = T2.TrackId;\n```",
+        "sql": "SELECT COUNT(DISTINCT T1.TrackId) FROM Track AS T1 JOIN InvoiceLine AS T2 ON T1.TrackId = T2.TrackId",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h01",
+    "difficulty": "hard",
+    "question": "Which genre brought in the most revenue from invoice lines? Give only the genre name.",
+    "reference_sql": "SELECT g.Name FROM Genre g JOIN Track t ON t.GenreId = g.GenreId JOIN InvoiceLine il ON il.TrackId = t.TrackId GROUP BY g.GenreId, g.Name ORDER BY sum(il.UnitPrice * il.Quantity) DESC LIMIT 1",
+    "status": "failed",
+    "attempts": 3,
+    "final_sql": "SELECT T2.Name \nFROM (\n    SELECT T1.UnitPrice * T2.Quantity AS Revenue, T2.Name \n    FROM Track T1 \n    JOIN MediaType M ON T1.MediaTypeId = M.MediaTypeId \n    JOIN Genre G ON T1.GenreId = G.GenreId \n    JOIN InvoiceLine I ON T1.TrackId = I.TrackId \n    JOIN Invoice ON I.InvoiceId = Invoice.InvoiceId\n) AS T1 \nJOIN Genre ON T1.Name = T2.Name \nGROUP BY T1.Name \nORDER BY T1.Revenue DESC \nLIMIT 1",
+    "first_attempt_sql": "SELECT T2.Name \nFROM (\n    SELECT I.LIST_PRICE * I.QTY AS Revenue, G.Name \n    FROM InvoiceLine I \n    JOIN Invoice ON I.InvoiceID = Invoice.InvoiceID \n    JOIN MediaType M ON I.MediaTypeID = M.MediaTypeID \n    JOIN Track ON I.TrackID = Track.TrackID \n    JOIN Genre G ON Track.GenreID = G.GenreID\n) AS T1 \nJOIN Genre ON T1.Name = G.Name \nGROUP BY T1.Name \nORDER BY T1.Revenue DESC \nLIMIT 1",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 332.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T2.Name \nFROM (\n    SELECT I.LIST_PRICE * I.QTY AS Revenue, G.Name \n    FROM InvoiceLine I \n    JOIN Invoice ON I.InvoiceID = Invoice.InvoiceID \n    JOIN MediaType M ON I.MediaTypeID = M.MediaTypeID \n    JOIN Track ON I.TrackID = Track.TrackID \n    JOIN Genre G ON Track.GenreID = G.GenreID\n) AS T1 \nJOIN Genre ON T1.Name = G.Name \nGROUP BY T1.Name \nORDER BY T1.Revenue DESC \nLIMIT 1;\n```",
+        "sql": "SELECT T2.Name \nFROM (\n    SELECT I.LIST_PRICE * I.QTY AS Revenue, G.Name \n    FROM InvoiceLine I \n    JOIN Invoice ON I.InvoiceID = Invoice.InvoiceID \n    JOIN MediaType M ON I.MediaTypeID = M.MediaTypeID \n    JOIN Track ON I.TrackID = Track.TrackID \n    JOIN Genre G ON Track.GenreID = G.GenreID\n) AS T1 \nJOIN Genre ON T1.Name = G.Name \nGROUP BY T1.Name \nORDER BY T1.Revenue DESC \nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT T2.Name \nFROM (\n    SELECT T1.UnitPrice * T1.Quantity AS Revenue, T2.Name \n    FROM Track T1 \n    JOIN MediaType M ON T1.MediaTypeId = M.MediaTypeId \n    JOIN Genre G ON T1.GenreId = G.GenreId \n    JOIN InvoiceLine I ON T1.TrackId = I.TrackId \n    JOIN Invoice ON I.InvoiceId = Invoice.InvoiceId\n) AS T1 \nJOIN Genre ON T1.Name = T2.Name \nGROUP BY T1.Name \nORDER BY T1.Revenue DESC \nLIMIT 1\n```",
+        "sql": "SELECT T2.Name \nFROM (\n    SELECT T1.UnitPrice * T1.Quantity AS Revenue, T2.Name \n    FROM Track T1 \n    JOIN MediaType M ON T1.MediaTypeId = M.MediaTypeId \n    JOIN Genre G ON T1.GenreId = G.GenreId \n    JOIN InvoiceLine I ON T1.TrackId = I.TrackId \n    JOIN Invoice ON I.InvoiceId = Invoice.InvoiceId\n) AS T1 \nJOIN Genre ON T1.Name = T2.Name \nGROUP BY T1.Name \nORDER BY T1.Revenue DESC \nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT T2.Name \nFROM (\n    SELECT T1.UnitPrice * T2.Quantity AS Revenue, T2.Name \n    FROM Track T1 \n    JOIN MediaType M ON T1.MediaTypeId = M.MediaTypeId \n    JOIN Genre G ON T1.GenreId = G.GenreId \n    JOIN InvoiceLine I ON T1.TrackId = I.TrackId \n    JOIN Invoice ON I.InvoiceId = Invoice.InvoiceId\n) AS T1 \nJOIN Genre ON T1.Name = T2.Name \nGROUP BY T1.Name \nORDER BY T1.Revenue DESC \nLIMIT 1\n```",
+        "sql": "SELECT T2.Name \nFROM (\n    SELECT T1.UnitPrice * T2.Quantity AS Revenue, T2.Name \n    FROM Track T1 \n    JOIN MediaType M ON T1.MediaTypeId = M.MediaTypeId \n    JOIN Genre G ON T1.GenreId = G.GenreId \n    JOIN InvoiceLine I ON T1.TrackId = I.TrackId \n    JOIN Invoice ON I.InvoiceId = Invoice.InvoiceId\n) AS T1 \nJOIN Genre ON T1.Name = T2.Name \nGROUP BY T1.Name \nORDER BY T1.Revenue DESC \nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "h02",
+    "difficulty": "hard",
+    "question": "Which artist earned the most revenue from invoice lines? Give only the artist's name.",
+    "reference_sql": "SELECT ar.Name FROM Artist ar JOIN Album a ON a.ArtistId = ar.ArtistId JOIN Track t ON t.AlbumId = a.AlbumId JOIN InvoiceLine il ON il.TrackId = t.TrackId GROUP BY ar.ArtistId, ar.Name ORDER BY sum(il.UnitPrice * il.Quantity) DESC LIMIT 1",
+    "status": "failed",
+    "attempts": 3,
+    "final_sql": "SELECT A.Name \nFROM Album AS A\nJOIN InvoiceLine AS IL ON A.AlbumId = IL.AlbumId\nJOIN Invoice AS I ON IL.InvoiceId = I.InvoiceId\nJOIN Customer AS C ON I.CustomerId = C.CustomerId\nWHERE I.Total > 0\nGROUP BY A.AlbumId\nORDER BY SUM(IL.UnitPrice * IL.Quantity) DESC\nLIMIT 1",
+    "first_attempt_sql": "SELECT A.Name \nFROM Album AS A\nJOIN InvoiceLine AS IL ON A.AlbumId = IL.AlbumId\nJOIN Invoice AS I ON IL.InvoiceId = I.InvoiceId\nJOIN Customer AS C ON I.CustomerId = C.CustomerId\nWHERE I.Total > 0\nGROUP BY A.Name\nORDER BY SUM(IL.UnitPrice * IL.Quantity) DESC\nLIMIT 1",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 270.6,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT A.Name \nFROM Album AS A\nJOIN InvoiceLine AS IL ON A.AlbumId = IL.AlbumId\nJOIN Invoice AS I ON IL.InvoiceId = I.InvoiceId\nJOIN Customer AS C ON I.CustomerId = C.CustomerId\nWHERE I.Total > 0\nGROUP BY A.Name\nORDER BY SUM(IL.UnitPrice * IL.Quantity) DESC\nLIMIT 1;\n```",
+        "sql": "SELECT A.Name \nFROM Album AS A\nJOIN InvoiceLine AS IL ON A.AlbumId = IL.AlbumId\nJOIN Invoice AS I ON IL.InvoiceId = I.InvoiceId\nJOIN Customer AS C ON I.CustomerId = C.CustomerId\nWHERE I.Total > 0\nGROUP BY A.Name\nORDER BY SUM(IL.UnitPrice * IL.Quantity) DESC\nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT T1.Name \nFROM Album AS T1\nJOIN InvoiceLine AS IL ON T1.AlbumId = IL.AlbumId\nJOIN Invoice AS I ON IL.InvoiceId = I.InvoiceId\nJOIN Customer AS C ON I.CustomerId = C.CustomerId\nWHERE I.Total > 0\nGROUP BY T1.Name\nORDER BY SUM(IL.UnitPrice * IL.Quantity) DESC\nLIMIT 1\n```",
+        "sql": "SELECT T1.Name \nFROM Album AS T1\nJOIN InvoiceLine AS IL ON T1.AlbumId = IL.AlbumId\nJOIN Invoice AS I ON IL.InvoiceId = I.InvoiceId\nJOIN Customer AS C ON I.CustomerId = C.CustomerId\nWHERE I.Total > 0\nGROUP BY T1.Name\nORDER BY SUM(IL.UnitPrice * IL.Quantity) DESC\nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT A.Name \nFROM Album AS A\nJOIN InvoiceLine AS IL ON A.AlbumId = IL.AlbumId\nJOIN Invoice AS I ON IL.InvoiceId = I.InvoiceId\nJOIN Customer AS C ON I.CustomerId = C.CustomerId\nWHERE I.Total > 0\nGROUP BY A.AlbumId\nORDER BY SUM(IL.UnitPrice * IL.Quantity) DESC\nLIMIT 1\n```",
+        "sql": "SELECT A.Name \nFROM Album AS A\nJOIN InvoiceLine AS IL ON A.AlbumId = IL.AlbumId\nJOIN Invoice AS I ON IL.InvoiceId = I.InvoiceId\nJOIN Customer AS C ON I.CustomerId = C.CustomerId\nWHERE I.Total > 0\nGROUP BY A.AlbumId\nORDER BY SUM(IL.UnitPrice * IL.Quantity) DESC\nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "h03",
+    "difficulty": "hard",
+    "question": "Which support representative's customers generated the most invoice revenue? Give the employee's first and last name.",
+    "reference_sql": "SELECT e.FirstName, e.LastName FROM Employee e JOIN Customer c ON c.SupportRepId = e.EmployeeId JOIN Invoice i ON i.CustomerId = c.CustomerId GROUP BY e.EmployeeId, e.FirstName, e.LastName ORDER BY sum(i.Total) DESC LIMIT 1",
+    "status": "answered",
+    "attempts": 2,
+    "final_sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN Customer AS C ON E.EmployeeId = C.SupportRepId\nWHERE C.CustomerId IN (\n    SELECT I.CustomerId\n    FROM Invoice AS I\n    GROUP BY I.CustomerId\n    ORDER BY SUM(I.Total) DESC\n    LIMIT 1\n)",
+    "first_attempt_sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN Customer AS C ON E.SupportRepId = C.SupportRepId\nWHERE C.CustomerId IN (\n    SELECT I.CustomerId\n    FROM Invoice AS I\n    GROUP BY I.CustomerId\n    ORDER BY SUM(I.Total) DESC\n    LIMIT 1\n)",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 150.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN Customer AS C ON E.SupportRepId = C.SupportRepId\nWHERE C.CustomerId IN (\n    SELECT I.CustomerId\n    FROM Invoice AS I\n    GROUP BY I.CustomerId\n    ORDER BY SUM(I.Total) DESC\n    LIMIT 1\n);\n```",
+        "sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN Customer AS C ON E.SupportRepId = C.SupportRepId\nWHERE C.CustomerId IN (\n    SELECT I.CustomerId\n    FROM Invoice AS I\n    GROUP BY I.CustomerId\n    ORDER BY SUM(I.Total) DESC\n    LIMIT 1\n)",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN Customer AS C ON E.EmployeeId = C.SupportRepId\nWHERE C.CustomerId IN (\n    SELECT I.CustomerId\n    FROM Invoice AS I\n    GROUP BY I.CustomerId\n    ORDER BY SUM(I.Total) DESC\n    LIMIT 1\n)\n```",
+        "sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN Customer AS C ON E.EmployeeId = C.SupportRepId\nWHERE C.CustomerId IN (\n    SELECT I.CustomerId\n    FROM Invoice AS I\n    GROUP BY I.CustomerId\n    ORDER BY SUM(I.Total) DESC\n    LIMIT 1\n)",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h04",
+    "difficulty": "hard",
+    "question": "How many customers have spent more than 40 in total? Give the number.",
+    "reference_sql": "SELECT count(*) FROM (SELECT CustomerId FROM Invoice GROUP BY CustomerId HAVING sum(Total) > 40)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersSpendingMoreThan40\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nGROUP BY T1.CustomerId\nHAVING SUM(T2.UnitPrice * T2.Quantity) > 40",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersSpendingMoreThan40\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nGROUP BY T1.CustomerId\nHAVING SUM(T2.UnitPrice * T2.Quantity) > 40",
+    "first_attempt_code": "ok",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 79.0,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersSpendingMoreThan40\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nGROUP BY T1.CustomerId\nHAVING SUM(T2.UnitPrice * T2.Quantity) > 40;\n```",
+        "sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomersSpendingMoreThan40\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nGROUP BY T1.CustomerId\nHAVING SUM(T2.UnitPrice * T2.Quantity) > 40",
+        "code": "ok",
+        "rows": 14
+      }
+    ]
+  },
+  {
+    "id": "h05",
+    "difficulty": "hard",
+    "question": "How many tracks have never been sold?",
+    "reference_sql": "SELECT count(*) FROM Track WHERE TrackId NOT IN (SELECT TrackId FROM InvoiceLine)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T.TrackId) AS NumberOfTracksNeverSold\nFROM Track AS T\nLEFT JOIN InvoiceLine AS IL ON T.TrackId = IL.TrackId\nWHERE IL.InvoiceLineId IS NULL",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T.TrackId) AS NumberOfTracksNeverSold\nFROM Track AS T\nLEFT JOIN InvoiceLine AS IL ON T.TrackId = IL.TrackId\nWHERE IL.InvoiceLineId IS NULL",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 63.8,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T.TrackId) AS NumberOfTracksNeverSold\nFROM Track AS T\nLEFT JOIN InvoiceLine AS IL ON T.TrackId = IL.TrackId\nWHERE IL.InvoiceLineId IS NULL;\n```",
+        "sql": "SELECT COUNT(DISTINCT T.TrackId) AS NumberOfTracksNeverSold\nFROM Track AS T\nLEFT JOIN InvoiceLine AS IL ON T.TrackId = IL.TrackId\nWHERE IL.InvoiceLineId IS NULL",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h06",
+    "difficulty": "hard",
+    "question": "Which artists have no albums? Give the number of such artists.",
+    "reference_sql": "SELECT count(*) FROM Artist WHERE ArtistId NOT IN (SELECT ArtistId FROM Album)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.ArtistId) AS NumberOfArtistsWithoutAlbums\nFROM Artist AS T1\nLEFT JOIN Album AS T2 ON T1.ArtistId = T2.ArtistId\nWHERE T2.AlbumId IS NULL",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.ArtistId) AS NumberOfArtistsWithoutAlbums\nFROM Artist AS T1\nLEFT JOIN Album AS T2 ON T1.ArtistId = T2.ArtistId\nWHERE T2.AlbumId IS NULL",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 71.2,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T1.ArtistId) AS NumberOfArtistsWithoutAlbums\nFROM Artist AS T1\nLEFT JOIN Album AS T2 ON T1.ArtistId = T2.ArtistId\nWHERE T2.AlbumId IS NULL;\n```",
+        "sql": "SELECT COUNT(DISTINCT T1.ArtistId) AS NumberOfArtistsWithoutAlbums\nFROM Artist AS T1\nLEFT JOIN Album AS T2 ON T1.ArtistId = T2.ArtistId\nWHERE T2.AlbumId IS NULL",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h07",
+    "difficulty": "hard",
+    "question": "What is the average number of tracks per album?",
+    "reference_sql": "SELECT avg(n) FROM (SELECT count(*) AS n FROM Track GROUP BY AlbumId)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT AVG(Total) FROM (\n    SELECT COUNT(*) AS Total FROM Track GROUP BY AlbumId\n) AS T",
+    "first_attempt_sql": "SELECT AVG(Total) FROM (\n    SELECT COUNT(*) AS Total FROM Track GROUP BY AlbumId\n) AS T",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 51.4,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT AVG(Total) FROM (\n    SELECT COUNT(*) AS Total FROM Track GROUP BY AlbumId\n) AS T;\n```",
+        "sql": "SELECT AVG(Total) FROM (\n    SELECT COUNT(*) AS Total FROM Track GROUP BY AlbumId\n) AS T",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h08",
+    "difficulty": "hard",
+    "question": "Which album has the longest total running time? Give only its title.",
+    "reference_sql": "SELECT a.Title FROM Album a JOIN Track t ON t.AlbumId = a.AlbumId GROUP BY a.AlbumId, a.Title ORDER BY sum(t.Milliseconds) DESC LIMIT 1",
+    "status": "failed",
+    "attempts": 3,
+    "final_sql": "SELECT T1.Title \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T1.Milliseconds = (\n    SELECT MAX(T3.Milliseconds) \n    FROM Track AS T3 \n    JOIN Album AS T4 ON T3.AlbumId = T4.AlbumId \n    WHERE T3.AlbumId = T1.AlbumId\n)",
+    "first_attempt_sql": "SELECT T1.Title \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nGROUP BY T1.Title \nORDER BY SUM(T1.Milliseconds) DESC \nLIMIT 1",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 242.1,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT T1.Title \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nGROUP BY T1.Title \nORDER BY SUM(T1.Milliseconds) DESC \nLIMIT 1;\n```",
+        "sql": "SELECT T1.Title \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nGROUP BY T1.Title \nORDER BY SUM(T1.Milliseconds) DESC \nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT T1.Title \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T1.Milliseconds IN (\n    SELECT MAX(Milliseconds) \n    FROM Track AS T3 \n    JOIN Album AS T4 ON T3.AlbumId = T4.AlbumId \n    WHERE T3.AlbumId = T1.AlbumId\n)\n```",
+        "sql": "SELECT T1.Title \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T1.Milliseconds IN (\n    SELECT MAX(Milliseconds) \n    FROM Track AS T3 \n    JOIN Album AS T4 ON T3.AlbumId = T4.AlbumId \n    WHERE T3.AlbumId = T1.AlbumId\n)",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT T1.Title \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T1.Milliseconds = (\n    SELECT MAX(T3.Milliseconds) \n    FROM Track AS T3 \n    JOIN Album AS T4 ON T3.AlbumId = T4.AlbumId \n    WHERE T3.AlbumId = T1.AlbumId\n)\n```",
+        "sql": "SELECT T1.Title \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nWHERE T1.Milliseconds = (\n    SELECT MAX(T3.Milliseconds) \n    FROM Track AS T3 \n    JOIN Album AS T4 ON T3.AlbumId = T4.AlbumId \n    WHERE T3.AlbumId = T1.AlbumId\n)",
+        "code": "execution_error",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "h09",
+    "difficulty": "hard",
+    "question": "In which month of 2022 was the invoice total highest? Give the month as a two-digit number.",
+    "reference_sql": "SELECT strftime('%m', InvoiceDate) FROM Invoice WHERE strftime('%Y', InvoiceDate) = '2022' GROUP BY strftime('%m', InvoiceDate) ORDER BY sum(Total) DESC LIMIT 1",
+    "status": "refused",
+    "attempts": 1,
+    "final_sql": "SELECT EXTRACT(MONTH FROM T2.InvoiceDate) AS MonthNumber\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nWHERE YEAR(T1.InvoiceDate) = 2022\nORDER BY T2.UnitPrice * T2.Quantity DESC\nLIMIT 1",
+    "first_attempt_sql": "SELECT EXTRACT(MONTH FROM T2.InvoiceDate) AS MonthNumber\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nWHERE YEAR(T1.InvoiceDate) = 2022\nORDER BY T2.UnitPrice * T2.Quantity DESC\nLIMIT 1",
+    "first_attempt_code": "function_denied",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 71.4,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT EXTRACT(MONTH FROM T2.InvoiceDate) AS MonthNumber\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nWHERE YEAR(T1.InvoiceDate) = 2022\nORDER BY T2.UnitPrice * T2.Quantity DESC\nLIMIT 1;\n```",
+        "sql": "SELECT EXTRACT(MONTH FROM T2.InvoiceDate) AS MonthNumber\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nWHERE YEAR(T1.InvoiceDate) = 2022\nORDER BY T2.UnitPrice * T2.Quantity DESC\nLIMIT 1",
+        "code": "function_denied",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "h10",
+    "difficulty": "hard",
+    "question": "How many customers bought at least one Jazz track? Count each customer once.",
+    "reference_sql": "SELECT count(DISTINCT i.CustomerId) FROM Invoice i JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId JOIN Track t ON t.TrackId = il.TrackId JOIN Genre g ON g.GenreId = t.GenreId WHERE g.Name = 'Jazz'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomers\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nJOIN Track AS T3 ON T2.TrackId = T3.TrackId\nJOIN MediaType AS T4 ON T3.MediaTypeId = T4.MediaTypeId\nWHERE T4.Name = 'Jazz'",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomers\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nJOIN Track AS T3 ON T2.TrackId = T3.TrackId\nJOIN MediaType AS T4 ON T3.MediaTypeId = T4.MediaTypeId\nWHERE T4.Name = 'Jazz'",
+    "first_attempt_code": "ok",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 74.3,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomers\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nJOIN Track AS T3 ON T2.TrackId = T3.TrackId\nJOIN MediaType AS T4 ON T3.MediaTypeId = T4.MediaTypeId\nWHERE T4.Name = 'Jazz';\n```",
+        "sql": "SELECT COUNT(DISTINCT T1.CustomerId) AS NumberOfCustomers\nFROM Invoice AS T1\nJOIN InvoiceLine AS T2 ON T1.InvoiceId = T2.InvoiceId\nJOIN Track AS T3 ON T2.TrackId = T3.TrackId\nJOIN MediaType AS T4 ON T3.MediaTypeId = T4.MediaTypeId\nWHERE T4.Name = 'Jazz'",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h11",
+    "difficulty": "hard",
+    "question": "Which country has the highest average invoice total, among countries with more than 10 invoices? Give only the country.",
+    "reference_sql": "SELECT BillingCountry FROM Invoice GROUP BY BillingCountry HAVING count(*) > 10 ORDER BY avg(Total) DESC LIMIT 1",
+    "status": "failed",
+    "attempts": 3,
+    "final_sql": "SELECT DISTINCT T2.Country\nFROM (\n    SELECT \n        T1.Country,\n        AVG(T1.Total) AS AverageTotal\n    FROM Invoice AS T1\n    JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId\n    GROUP BY T1.Country\n    HAVING COUNT(*) > 10\n) AS T3\nJOIN Invoice AS T4 ON T3.Country = T4.BillingCountry\nGROUP BY T3.Country\nORDER BY T3.AverageTotal DESC\nLIMIT 1",
+    "first_attempt_sql": "SELECT DISTINCT T2.Country\nFROM (\n    SELECT \n        T1.Country,\n        AVG(T1.Total) AS AverageTotal\n    FROM Invoice AS T1\n    JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId\n    GROUP BY T1.Country\n    HAVING COUNT(*) > 10\n) AS T3\nJOIN Invoice AS T4 ON T3.Country = T4.BillingCountry\nGROUP BY T3.Country\nORDER BY T3.AverageTotal DESC\nLIMIT 1",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 305.7,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT DISTINCT T2.Country\nFROM (\n    SELECT \n        T1.Country,\n        AVG(T1.Total) AS AverageTotal\n    FROM Invoice AS T1\n    JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId\n    GROUP BY T1.Country\n    HAVING COUNT(*) > 10\n) AS T3\nJOIN Invoice AS T4 ON T3.Country = T4.BillingCountry\nGROUP BY T3.Country\nORDER BY T3.AverageTotal DESC\nLIMIT 1;\n```",
+        "sql": "SELECT DISTINCT T2.Country\nFROM (\n    SELECT \n        T1.Country,\n        AVG(T1.Total) AS AverageTotal\n    FROM Invoice AS T1\n    JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId\n    GROUP BY T1.Country\n    HAVING COUNT(*) > 10\n) AS T3\nJOIN Invoice AS T4 ON T3.Country = T4.BillingCountry\nGROUP BY T3.Country\nORDER BY T3.AverageTotal DESC\nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT DISTINCT T2.Country\nFROM (\n    SELECT \n        T1.Country,\n        AVG(T1.Total) AS AverageTotal\n    FROM Invoice AS T1\n    JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId\n    GROUP BY T1.Country\n    HAVING COUNT(*) > 10\n) AS T3\nJOIN Invoice AS T4 ON T3.Country = T4.BillingCountry\nGROUP BY T3.Country\nORDER BY T3.AverageTotal DESC\nLIMIT 1\n```",
+        "sql": "SELECT DISTINCT T2.Country\nFROM (\n    SELECT \n        T1.Country,\n        AVG(T1.Total) AS AverageTotal\n    FROM Invoice AS T1\n    JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId\n    GROUP BY T1.Country\n    HAVING COUNT(*) > 10\n) AS T3\nJOIN Invoice AS T4 ON T3.Country = T4.BillingCountry\nGROUP BY T3.Country\nORDER BY T3.AverageTotal DESC\nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT DISTINCT T2.Country\nFROM (\n    SELECT \n        T1.Country,\n        AVG(T1.Total) AS AverageTotal\n    FROM Invoice AS T1\n    JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId\n    GROUP BY T1.Country\n    HAVING COUNT(*) > 10\n) AS T3\nJOIN Invoice AS T4 ON T3.Country = T4.BillingCountry\nGROUP BY T3.Country\nORDER BY T3.AverageTotal DESC\nLIMIT 1\n```",
+        "sql": "SELECT DISTINCT T2.Country\nFROM (\n    SELECT \n        T1.Country,\n        AVG(T1.Total) AS AverageTotal\n    FROM Invoice AS T1\n    JOIN Customer AS T2 ON T1.CustomerId = T2.CustomerId\n    GROUP BY T1.Country\n    HAVING COUNT(*) > 10\n) AS T3\nJOIN Invoice AS T4 ON T3.Country = T4.BillingCountry\nGROUP BY T3.Country\nORDER BY T3.AverageTotal DESC\nLIMIT 1",
+        "code": "execution_error",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "h12",
+    "difficulty": "hard",
+    "question": "How many tracks does the largest playlist contain?",
+    "reference_sql": "SELECT max(n) FROM (SELECT count(*) AS n FROM PlaylistTrack GROUP BY PlaylistId)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(T1.TrackId) AS NumberOfTracks\nFROM Track T1\nJOIN PlaylistTrack PT ON T1.TrackId = PT.TrackId\nGROUP BY PT.PlaylistId\nORDER BY COUNT(T1.TrackId) DESC\nLIMIT 1",
+    "first_attempt_sql": "SELECT COUNT(T1.TrackId) AS NumberOfTracks\nFROM Track T1\nJOIN PlaylistTrack PT ON T1.TrackId = PT.TrackId\nGROUP BY PT.PlaylistId\nORDER BY COUNT(T1.TrackId) DESC\nLIMIT 1",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 79.5,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(T1.TrackId) AS NumberOfTracks\nFROM Track T1\nJOIN PlaylistTrack PT ON T1.TrackId = PT.TrackId\nGROUP BY PT.PlaylistId\nORDER BY COUNT(T1.TrackId) DESC\nLIMIT 1;\n```",
+        "sql": "SELECT COUNT(T1.TrackId) AS NumberOfTracks\nFROM Track T1\nJOIN PlaylistTrack PT ON T1.TrackId = PT.TrackId\nGROUP BY PT.PlaylistId\nORDER BY COUNT(T1.TrackId) DESC\nLIMIT 1",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h13",
+    "difficulty": "hard",
+    "question": "What percentage of tracks belong to the Rock genre? Give a number from 0 to 100.",
+    "reference_sql": "SELECT 100.0 * sum(CASE WHEN g.Name = 'Rock' THEN 1 ELSE 0 END) / count(*) FROM Track t JOIN Genre g ON t.GenreId = g.GenreId",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT CAST(SUM(CASE WHEN T.GenreId = (SELECT GenreId FROM Genre WHERE Name = 'Rock') THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T.TrackId) FROM Track AS T",
+    "first_attempt_sql": "SELECT CAST(SUM(CASE WHEN T.GenreId = (SELECT GenreId FROM Genre WHERE Name = 'Rock') THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T.TrackId) FROM Track AS T",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 59.8,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT CAST(SUM(CASE WHEN T.GenreId = (SELECT GenreId FROM Genre WHERE Name = 'Rock') THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T.TrackId) FROM Track AS T;\n```",
+        "sql": "SELECT CAST(SUM(CASE WHEN T.GenreId = (SELECT GenreId FROM Genre WHERE Name = 'Rock') THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T.TrackId) FROM Track AS T",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h14",
+    "difficulty": "hard",
+    "question": "Who is the top customer in the USA by total spend? Give the first and last name.",
+    "reference_sql": "SELECT c.FirstName, c.LastName FROM Customer c JOIN Invoice i ON i.CustomerId = c.CustomerId WHERE c.Country = 'USA' GROUP BY c.CustomerId, c.FirstName, c.LastName ORDER BY sum(i.Total) DESC LIMIT 1",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT c.FirstName, c.LastName FROM Customer AS c \nJOIN Invoice AS i ON c.CustomerId = i.CustomerId \nJOIN InvoiceLine AS il ON i.InvoiceId = il.InvoiceId \nJOIN Track AS t ON il.TrackId = t.TrackId \nJOIN MediaType AS m ON t.MediaTypeId = m.MediaTypeId \nWHERE c.Country = 'USA' AND i.Total IS NOT NULL GROUP BY c.CustomerId ORDER BY SUM(i.Total) DESC LIMIT 1",
+    "first_attempt_sql": "SELECT c.FirstName, c.LastName FROM Customer AS c \nJOIN Invoice AS i ON c.CustomerId = i.CustomerId \nJOIN InvoiceLine AS il ON i.InvoiceId = il.InvoiceId \nJOIN Track AS t ON il.TrackId = t.TrackId \nJOIN MediaType AS m ON t.MediaTypeId = m.MediaTypeId \nWHERE c.Country = 'USA' AND i.Total IS NOT NULL GROUP BY c.CustomerId ORDER BY SUM(i.Total) DESC LIMIT 1",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 80.3,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT c.FirstName, c.LastName FROM Customer AS c \nJOIN Invoice AS i ON c.CustomerId = i.CustomerId \nJOIN InvoiceLine AS il ON i.InvoiceId = il.InvoiceId \nJOIN Track AS t ON il.TrackId = t.TrackId \nJOIN MediaType AS m ON t.MediaTypeId = m.MediaTypeId \nWHERE c.Country = 'USA' AND i.Total IS NOT NULL GROUP BY c.CustomerId ORDER BY SUM(i.Total) DESC LIMIT 1;\n```",
+        "sql": "SELECT c.FirstName, c.LastName FROM Customer AS c \nJOIN Invoice AS i ON c.CustomerId = i.CustomerId \nJOIN InvoiceLine AS il ON i.InvoiceId = il.InvoiceId \nJOIN Track AS t ON il.TrackId = t.TrackId \nJOIN MediaType AS m ON t.MediaTypeId = m.MediaTypeId \nWHERE c.Country = 'USA' AND i.Total IS NOT NULL GROUP BY c.CustomerId ORDER BY SUM(i.Total) DESC LIMIT 1",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h15",
+    "difficulty": "hard",
+    "question": "Which employee is the manager of the most people? Give the first and last name.",
+    "reference_sql": "SELECT m.FirstName, m.LastName FROM Employee m JOIN Employee e ON e.ReportsTo = m.EmployeeId GROUP BY m.EmployeeId, m.FirstName, m.LastName ORDER BY count(*) DESC LIMIT 1",
+    "status": "failed",
+    "attempts": 3,
+    "final_sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN (\n    SELECT T1.EmployeeId \n    FROM Employee AS T1\n    JOIN Employee AS T2 ON T1.EmployeeId = T2.ReportsTo\n    GROUP BY T1.EmployeeId\n    HAVING COUNT(T1.EmployeeId) > (SELECT MAX(COUNT(*) * 1.0 / COUNT(T1.EmployeeId)) FROM Employee WHERE ReportsTo = T1.EmployeeId)\n) AS Mgr ON E.EmployeeId = Mgr.EmployeeId",
+    "first_attempt_sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN (\n    SELECT T1.EmployeeId \n    FROM Employee AS T1\n    JOIN Employee AS T2 ON T1.EmployeeId = T2.ReportsTo\n    GROUP BY T1.EmployeeId\n    HAVING COUNT(T1.EmployeeId) > ALL(\n        SELECT COUNT(EmployeeId) \n        FROM Employee \n        WHERE ReportsTo = T1.EmployeeId\n    )\n) AS Mgr ON E.EmployeeId = Mgr.EmployeeId",
+    "first_attempt_code": "execution_error",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 284.2,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN (\n    SELECT T1.EmployeeId \n    FROM Employee AS T1\n    JOIN Employee AS T2 ON T1.EmployeeId = T2.ReportsTo\n    GROUP BY T1.EmployeeId\n    HAVING COUNT(T1.EmployeeId) > ALL(\n        SELECT COUNT(EmployeeId) \n        FROM Employee \n        WHERE ReportsTo = T1.EmployeeId\n    )\n) AS Mgr ON E.EmployeeId = Mgr.EmployeeId;\n```",
+        "sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN (\n    SELECT T1.EmployeeId \n    FROM Employee AS T1\n    JOIN Employee AS T2 ON T1.EmployeeId = T2.ReportsTo\n    GROUP BY T1.EmployeeId\n    HAVING COUNT(T1.EmployeeId) > ALL(\n        SELECT COUNT(EmployeeId) \n        FROM Employee \n        WHERE ReportsTo = T1.EmployeeId\n    )\n) AS Mgr ON E.EmployeeId = Mgr.EmployeeId",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 2,
+        "reply": "```sql\nSELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN (\n    SELECT T1.EmployeeId \n    FROM Employee AS T1\n    JOIN Employee AS T2 ON T1.EmployeeId = T2.ReportsTo\n    GROUP BY T1.EmployeeId\n    HAVING COUNT(T1.EmployeeId) > (SELECT MAX(COUNT(EmployeeId)) FROM Employee WHERE ReportsTo = T1.EmployeeId)\n) AS Mgr ON E.EmployeeId = Mgr.EmployeeId\n```",
+        "sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN (\n    SELECT T1.EmployeeId \n    FROM Employee AS T1\n    JOIN Employee AS T2 ON T1.EmployeeId = T2.ReportsTo\n    GROUP BY T1.EmployeeId\n    HAVING COUNT(T1.EmployeeId) > (SELECT MAX(COUNT(EmployeeId)) FROM Employee WHERE ReportsTo = T1.EmployeeId)\n) AS Mgr ON E.EmployeeId = Mgr.EmployeeId",
+        "code": "execution_error",
+        "rows": 0
+      },
+      {
+        "attempt": 3,
+        "reply": "```sql\nSELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN (\n    SELECT T1.EmployeeId \n    FROM Employee AS T1\n    JOIN Employee AS T2 ON T1.EmployeeId = T2.ReportsTo\n    GROUP BY T1.EmployeeId\n    HAVING COUNT(T1.EmployeeId) > (SELECT MAX(COUNT(*) * 1.0 / COUNT(T1.EmployeeId)) FROM Employee WHERE ReportsTo = T1.EmployeeId)\n) AS Mgr ON E.EmployeeId = Mgr.EmployeeId\n```",
+        "sql": "SELECT E.FirstName, E.LastName \nFROM Employee AS E\nJOIN (\n    SELECT T1.EmployeeId \n    FROM Employee AS T1\n    JOIN Employee AS T2 ON T1.EmployeeId = T2.ReportsTo\n    GROUP BY T1.EmployeeId\n    HAVING COUNT(T1.EmployeeId) > (SELECT MAX(COUNT(*) * 1.0 / COUNT(T1.EmployeeId)) FROM Employee WHERE ReportsTo = T1.EmployeeId)\n) AS Mgr ON E.EmployeeId = Mgr.EmployeeId",
+        "code": "execution_error",
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "id": "h16",
+    "difficulty": "hard",
+    "question": "How many albums contain tracks from more than one genre?",
+    "reference_sql": "SELECT count(*) FROM (SELECT AlbumId FROM Track GROUP BY AlbumId HAVING count(DISTINCT GenreId) > 1)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(DISTINCT T1.AlbumId) \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nGROUP BY T1.AlbumId \nHAVING COUNT(DISTINCT T1.GenreId) > 1",
+    "first_attempt_sql": "SELECT COUNT(DISTINCT T1.AlbumId) \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nGROUP BY T1.AlbumId \nHAVING COUNT(DISTINCT T1.GenreId) > 1",
+    "first_attempt_code": "ok",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 748.2,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(DISTINCT T1.AlbumId) \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nGROUP BY T1.AlbumId \nHAVING COUNT(DISTINCT T1.GenreId) > 1;\n```",
+        "sql": "SELECT COUNT(DISTINCT T1.AlbumId) \nFROM Track AS T1 \nJOIN Album AS T2 ON T1.AlbumId = T2.AlbumId \nGROUP BY T1.AlbumId \nHAVING COUNT(DISTINCT T1.GenreId) > 1",
+        "code": "ok",
+        "rows": 11
+      }
+    ]
+  },
+  {
+    "id": "h17",
+    "difficulty": "hard",
+    "question": "What is the revenue from invoice lines for the artist Iron Maiden?",
+    "reference_sql": "SELECT sum(il.UnitPrice * il.Quantity) FROM InvoiceLine il JOIN Track t ON t.TrackId = il.TrackId JOIN Album a ON a.AlbumId = t.AlbumId JOIN Artist ar ON ar.ArtistId = a.ArtistId WHERE ar.Name = 'Iron Maiden'",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT SUM(Total) AS Revenue FROM InvoiceLine IL INNER JOIN Invoice I ON IL.InvoiceId = I.InvoiceId INNER JOIN Track T ON IL.TrackId = T.TrackId INNER JOIN Album A ON T.AlbumId = A.AlbumId INNER JOIN Artist ART ON A.ArtistId = ART.ArtistId WHERE ART.Name = 'Iron Maiden'",
+    "first_attempt_sql": "SELECT SUM(Total) AS Revenue FROM InvoiceLine IL INNER JOIN Invoice I ON IL.InvoiceId = I.InvoiceId INNER JOIN Track T ON IL.TrackId = T.TrackId INNER JOIN Album A ON T.AlbumId = A.AlbumId INNER JOIN Artist ART ON A.ArtistId = ART.ArtistId WHERE ART.Name = 'Iron Maiden'",
+    "first_attempt_code": "ok",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 82.9,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT SUM(Total) AS Revenue FROM InvoiceLine IL INNER JOIN Invoice I ON IL.InvoiceId = I.InvoiceId INNER JOIN Track T ON IL.TrackId = T.TrackId INNER JOIN Album A ON T.AlbumId = A.AlbumId INNER JOIN Artist ART ON A.ArtistId = ART.ArtistId WHERE ART.Name = 'Iron Maiden';\n```",
+        "sql": "SELECT SUM(Total) AS Revenue FROM InvoiceLine IL INNER JOIN Invoice I ON IL.InvoiceId = I.InvoiceId INNER JOIN Track T ON IL.TrackId = T.TrackId INNER JOIN Album A ON T.AlbumId = A.AlbumId INNER JOIN Artist ART ON A.ArtistId = ART.ArtistId WHERE ART.Name = 'Iron Maiden'",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h18",
+    "difficulty": "hard",
+    "question": "How many invoices contain more than 10 line items?",
+    "reference_sql": "SELECT count(*) FROM (SELECT InvoiceId FROM InvoiceLine GROUP BY InvoiceId HAVING count(*) > 10)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT COUNT(*)\nFROM Invoice\nWHERE InvoiceId IN (\n    SELECT InvoiceId\n    FROM InvoiceLine\n    GROUP BY InvoiceId\n    HAVING COUNT(*) > 10\n)",
+    "first_attempt_sql": "SELECT COUNT(*)\nFROM Invoice\nWHERE InvoiceId IN (\n    SELECT InvoiceId\n    FROM InvoiceLine\n    GROUP BY InvoiceId\n    HAVING COUNT(*) > 10\n)",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 76.8,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT COUNT(*)\nFROM Invoice\nWHERE InvoiceId IN (\n    SELECT InvoiceId\n    FROM InvoiceLine\n    GROUP BY InvoiceId\n    HAVING COUNT(*) > 10\n);\n```",
+        "sql": "SELECT COUNT(*)\nFROM Invoice\nWHERE InvoiceId IN (\n    SELECT InvoiceId\n    FROM InvoiceLine\n    GROUP BY InvoiceId\n    HAVING COUNT(*) > 10\n)",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h19",
+    "difficulty": "hard",
+    "question": "What is the largest number of different tracks bought by any one customer?",
+    "reference_sql": "SELECT max(n) FROM (SELECT count(DISTINCT il.TrackId) AS n FROM Invoice i JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId GROUP BY i.CustomerId)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT MAX(TotalNumberOfTracks) \nFROM (\n    SELECT COUNT(DISTINCT T1.TrackId) AS TotalNumberOfTracks \n    FROM InvoiceLine AS T1\n    INNER JOIN Invoice AS T2 ON T1.InvoiceId = T2.InvoiceId\n    GROUP BY T2.CustomerId\n) AS TracksPerCustomerId",
+    "first_attempt_sql": "SELECT MAX(TotalNumberOfTracks) \nFROM (\n    SELECT COUNT(DISTINCT T1.TrackId) AS TotalNumberOfTracks \n    FROM InvoiceLine AS T1\n    INNER JOIN Invoice AS T2 ON T1.InvoiceId = T2.InvoiceId\n    GROUP BY T2.CustomerId\n) AS TracksPerCustomerId",
+    "first_attempt_code": "ok",
+    "strict_first": true,
+    "lenient_first": true,
+    "strict_final": true,
+    "lenient_final": true,
+    "seconds": 83.1,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT MAX(TotalNumberOfTracks) \nFROM (\n    SELECT COUNT(DISTINCT T1.TrackId) AS TotalNumberOfTracks \n    FROM InvoiceLine AS T1\n    INNER JOIN Invoice AS T2 ON T1.InvoiceId = T2.InvoiceId\n    GROUP BY T2.CustomerId\n) AS TracksPerCustomerId;\n```",
+        "sql": "SELECT MAX(TotalNumberOfTracks) \nFROM (\n    SELECT COUNT(DISTINCT T1.TrackId) AS TotalNumberOfTracks \n    FROM InvoiceLine AS T1\n    INNER JOIN Invoice AS T2 ON T1.InvoiceId = T2.InvoiceId\n    GROUP BY T2.CustomerId\n) AS TracksPerCustomerId",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  },
+  {
+    "id": "h20",
+    "difficulty": "hard",
+    "question": "What is the average total spend per customer?",
+    "reference_sql": "SELECT avg(s) FROM (SELECT sum(Total) AS s FROM Invoice GROUP BY CustomerId)",
+    "status": "answered",
+    "attempts": 1,
+    "final_sql": "SELECT AVG(Total) AS Average_Spend_Per_Customer\nFROM Invoice",
+    "first_attempt_sql": "SELECT AVG(Total) AS Average_Spend_Per_Customer\nFROM Invoice",
+    "first_attempt_code": "ok",
+    "strict_first": false,
+    "lenient_first": false,
+    "strict_final": false,
+    "lenient_final": false,
+    "seconds": 46.6,
+    "trace": [
+      {
+        "attempt": 1,
+        "reply": "```sql\nSELECT AVG(Total) AS Average_Spend_Per_Customer\nFROM Invoice;\n```",
+        "sql": "SELECT AVG(Total) AS Average_Spend_Per_Customer\nFROM Invoice",
+        "code": "ok",
+        "rows": 1
+      }
+    ]
+  }
+]
