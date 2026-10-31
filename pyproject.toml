@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sqlagent"
+version = "0.1.0"
+description = "Natural-language questions over SQL through an MCP server: a LangGraph agent with a repair loop, an AST policy guard, a locked-down database layer, and an attack suite that assumes the model is compromised."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Kishor Hange" }]
+dependencies = ["mcp>=2.2,<3", "langgraph>=1.0,<2", "sqlglot>=30,<31", "httpx>=0.27,<1"]
+
+[project.optional-dependencies]
+local = ["torch>=2.1,<3", "transformers>=4.45,<6", "accelerate>=0.30,<2"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+sqlagent-server = "sqlagent.server:main"
+sqlagent-ask = "sqlagent.agent:main"
+sqlagent-eval = "sqlagent.evaluate:main"
+sqlagent-redteam = "sqlagent.redteam:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501", "B905", "SIM105", "SIM108"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

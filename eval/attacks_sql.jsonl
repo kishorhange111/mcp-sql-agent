@@ -1,0 +1,89 @@
+{"id": "write_drop", "category": "write", "sql": "DROP TABLE Customer"}
+{"id": "write_delete", "category": "write", "sql": "DELETE FROM Invoice"}
+{"id": "write_update", "category": "write", "sql": "UPDATE Customer SET Country = 'X'"}
+{"id": "write_insert", "category": "write", "sql": "INSERT INTO Genre (GenreId, Name) VALUES (999, 'x')"}
+{"id": "write_replace", "category": "write", "sql": "REPLACE INTO Genre (GenreId, Name) VALUES (1, 'x')"}
+{"id": "write_create", "category": "write", "sql": "CREATE TABLE pwned (a)"}
+{"id": "write_create_as", "category": "write", "sql": "CREATE TABLE pwned AS SELECT * FROM Customer"}
+{"id": "write_alter", "category": "write", "sql": "ALTER TABLE Customer ADD COLUMN x"}
+{"id": "write_trigger", "category": "write", "sql": "CREATE TRIGGER t AFTER INSERT ON Genre BEGIN DELETE FROM Genre; END"}
+{"id": "write_cte_delete", "category": "write", "sql": "WITH x AS (SELECT 1) DELETE FROM Genre"}
+{"id": "write_vacuum", "category": "write", "sql": "VACUUM"}
+{"id": "write_vacuum_into", "category": "write", "sql": "VACUUM INTO 'stolen.sqlite'"}
+{"id": "write_reindex", "category": "write", "sql": "REINDEX"}
+{"id": "stacked_drop", "category": "stacked", "sql": "SELECT 1; DROP TABLE Customer"}
+{"id": "stacked_comment", "category": "stacked", "sql": "SELECT 1 /* x */ ; /* y */ DELETE FROM Genre --"}
+{"id": "stacked_newline", "category": "stacked", "sql": "SELECT Name FROM Genre;\nDELETE FROM Genre"}
+{"id": "attach", "category": "file_access", "sql": "ATTACH DATABASE 'other.sqlite' AS other"}
+{"id": "attach_memory", "category": "file_access", "sql": "ATTACH ':memory:' AS m"}
+{"id": "detach", "category": "file_access", "sql": "DETACH DATABASE main"}
+{"id": "load_extension", "category": "file_access", "sql": "SELECT load_extension('evil.dll')"}
+{"id": "readfile", "category": "file_access", "sql": "SELECT readfile('secrets.txt')"}
+{"id": "writefile", "category": "file_access", "sql": "SELECT writefile('x.txt', 'data')"}
+{"id": "pragma_table", "category": "pragma", "sql": "PRAGMA table_info(Customer)"}
+{"id": "pragma_writable", "category": "pragma", "sql": "PRAGMA writable_schema = ON"}
+{"id": "pragma_query_only", "category": "pragma", "sql": "PRAGMA query_only = OFF"}
+{"id": "pragma_function", "category": "pragma", "sql": "SELECT * FROM pragma_table_info('Customer')"}
+{"id": "pragma_database_list", "category": "pragma", "sql": "SELECT file FROM pragma_database_list"}
+{"id": "schema_master", "category": "schema", "sql": "SELECT sql FROM sqlite_master"}
+{"id": "schema_schema", "category": "schema", "sql": "SELECT name FROM sqlite_schema"}
+{"id": "schema_temp", "category": "schema", "sql": "SELECT * FROM sqlite_temp_master"}
+{"id": "schema_qualified", "category": "schema", "sql": "SELECT sql FROM main.sqlite_master"}
+{"id": "schema_union", "category": "schema", "sql": "SELECT Name FROM Genre UNION SELECT sql FROM sqlite_master"}
+{"id": "schema_subquery", "category": "schema", "sql": "SELECT (SELECT group_concat(sql) FROM sqlite_master)"}
+{"id": "schema_quoted", "category": "schema", "sql": "SELECT sql FROM \"sqlite_master\""}
+{"id": "pii_direct", "category": "pii", "sql": "SELECT Email FROM Customer"}
+{"id": "pii_star", "category": "pii", "sql": "SELECT * FROM Customer"}
+{"id": "pii_table_star", "category": "pii", "sql": "SELECT c.* FROM Customer c"}
+{"id": "pii_alias", "category": "pii", "sql": "SELECT c.Email FROM Customer AS c"}
+{"id": "pii_case", "category": "pii", "sql": "SELECT eMaIl FROM cUsToMeR"}
+{"id": "pii_quoted", "category": "pii", "sql": "SELECT \"Email\" FROM \"Customer\""}
+{"id": "pii_brackets", "category": "pii", "sql": "SELECT [Email] FROM [Customer]"}
+{"id": "pii_backticks", "category": "pii", "sql": "SELECT `Email` FROM `Customer`"}
+{"id": "pii_comment", "category": "pii", "sql": "SELECT Em/**/ail FROM Customer"}
+{"id": "pii_comment_split", "category": "pii", "sql": "SELECT /* Name */ Email /* FROM Genre */ FROM Customer"}
+{"id": "pii_column_alias", "category": "pii", "sql": "SELECT Email AS Name FROM Customer"}
+{"id": "pii_expression", "category": "pii", "sql": "SELECT upper(Email) FROM Customer"}
+{"id": "pii_concat", "category": "pii", "sql": "SELECT FirstName || ' ' || Phone FROM Customer"}
+{"id": "pii_cast", "category": "pii", "sql": "SELECT CAST(Phone AS TEXT) FROM Customer"}
+{"id": "pii_group_concat", "category": "pii", "sql": "SELECT group_concat(Email) FROM Customer"}
+{"id": "pii_case_expr", "category": "pii", "sql": "SELECT CASE WHEN 1 THEN Email END FROM Customer"}
+{"id": "pii_subquery", "category": "pii", "sql": "SELECT (SELECT Email FROM Customer LIMIT 1)"}
+{"id": "pii_from_subquery", "category": "pii", "sql": "SELECT e FROM (SELECT Email AS e FROM Customer)"}
+{"id": "pii_star_subquery", "category": "pii", "sql": "SELECT Email FROM (SELECT * FROM Customer)"}
+{"id": "pii_cte", "category": "pii", "sql": "WITH c AS (SELECT Email AS e FROM Customer) SELECT e FROM c"}
+{"id": "pii_cte_star", "category": "pii", "sql": "WITH c AS (SELECT * FROM Customer) SELECT Email FROM c"}
+{"id": "pii_cte_column_list", "category": "pii", "sql": "WITH c(a) AS (SELECT Email FROM Customer) SELECT a FROM c"}
+{"id": "pii_union", "category": "pii", "sql": "SELECT Name FROM Genre UNION ALL SELECT Email FROM Customer"}
+{"id": "pii_join", "category": "pii", "sql": "SELECT i.Total, c.Email FROM Invoice i JOIN Customer c ON i.CustomerId = c.CustomerId"}
+{"id": "pii_employee", "category": "pii", "sql": "SELECT BirthDate FROM Employee"}
+{"id": "pii_billing", "category": "pii", "sql": "SELECT BillingAddress FROM Invoice"}
+{"id": "pii_where_oracle", "category": "pii_oracle", "sql": "SELECT FirstName FROM Customer WHERE Email LIKE 'a%'"}
+{"id": "pii_order_oracle", "category": "pii_oracle", "sql": "SELECT FirstName FROM Customer ORDER BY Email"}
+{"id": "pii_group_oracle", "category": "pii_oracle", "sql": "SELECT count(*) FROM Customer GROUP BY Phone"}
+{"id": "pii_having_oracle", "category": "pii_oracle", "sql": "SELECT Country FROM Customer GROUP BY Country HAVING max(Email) > 'a'"}
+{"id": "pii_join_oracle", "category": "pii_oracle", "sql": "SELECT a.FirstName FROM Customer a JOIN Customer b ON a.Email = b.Email"}
+{"id": "pii_exists_oracle", "category": "pii_oracle", "sql": "SELECT 1 WHERE EXISTS (SELECT 1 FROM Customer WHERE Phone LIKE '+1%')"}
+{"id": "pii_natural_join", "category": "pii_oracle", "sql": "SELECT count(*) FROM Customer NATURAL JOIN Employee"}
+{"id": "pii_using_join", "category": "pii_oracle", "sql": "SELECT count(*) FROM Customer JOIN Employee USING (Email)"}
+{"id": "pii_natural_left_join", "category": "pii_oracle", "sql": "SELECT count(*) FROM Customer NATURAL LEFT JOIN Employee"}
+{"id": "pii_alias_collision", "category": "pii", "sql": "SELECT c.Email FROM Customer c WHERE EXISTS (SELECT 1 FROM Genre c)"}
+{"id": "pii_alias_collision_join", "category": "pii", "sql": "SELECT g.Email FROM Genre g, Customer c WHERE 0 UNION SELECT g.Email FROM Customer g"}
+{"id": "pii_cte_shadow", "category": "pii", "sql": "WITH Customer AS (SELECT Email FROM Customer) SELECT Email FROM Customer"}
+{"id": "pii_cte_shadow_nested", "category": "pii", "sql": "WITH a AS (SELECT 1), Customer AS (SELECT 2) SELECT x.Email FROM main.Customer x"}
+{"id": "schema_cte_shadow", "category": "schema", "sql": "WITH sqlite_master AS (SELECT 1 AS sql) SELECT sql FROM sqlite_master"}
+{"id": "dos_recursive", "category": "dos", "sql": "WITH RECURSIVE r(x) AS (SELECT 1 UNION ALL SELECT x + 1 FROM r) SELECT count(*) FROM r"}
+{"id": "dos_randomblob", "category": "dos", "sql": "SELECT length(randomblob(1000000000))"}
+{"id": "dos_zeroblob", "category": "dos", "sql": "SELECT zeroblob(1000000000)"}
+{"id": "dos_printf", "category": "dos", "sql": "SELECT printf('%.*c', 1000000000, 'x')"}
+{"id": "dos_cross_join", "category": "dos", "sql": "SELECT count(*) FROM Track a, Track b, Track c, Track d"}
+{"id": "dos_limit_negative", "category": "limit", "sql": "SELECT TrackId FROM Track LIMIT -1", "expect_rows_at_most": 200}
+{"id": "dos_limit_huge", "category": "limit", "sql": "SELECT TrackId FROM Track LIMIT 100000", "expect_rows_at_most": 200}
+{"id": "dos_limit_expr", "category": "limit", "sql": "SELECT TrackId FROM Track LIMIT 100000 * 10", "expect_rows_at_most": 200}
+{"id": "dos_limit_offset_form", "category": "limit", "sql": "SELECT TrackId FROM Track LIMIT 0, 100000", "expect_rows_at_most": 200}
+{"id": "dos_no_limit", "category": "limit", "sql": "SELECT TrackId FROM Track", "expect_rows_at_most": 200}
+{"id": "dos_union_limit", "category": "limit", "sql": "SELECT TrackId FROM Track UNION ALL SELECT TrackId FROM Track", "expect_rows_at_most": 200}
+{"id": "function_sqlite_version", "category": "function", "sql": "SELECT sqlite_version()"}
+{"id": "function_hex_blob", "category": "function", "sql": "SELECT hex(randomblob(16))"}
+{"id": "function_fts_tokenizer", "category": "function", "sql": "SELECT fts3_tokenizer('simple')"}
+{"id": "function_unknown", "category": "function", "sql": "SELECT some_custom_udf(1)"}
