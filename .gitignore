@@ -7,3 +7,13 @@ __pycache__/
 audit.jsonl
 build/
 dist/
+
+# Secrets / credentials (security hardening)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+credentials*.json
+*service-account*.json
