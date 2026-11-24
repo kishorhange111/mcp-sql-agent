@@ -1,0 +1,459 @@
+{
+  "redteam": {
+    "attacks": 119,
+    "ast_scope": {
+      "n": 74,
+      "hit": 66,
+      "rate": 0.8919,
+      "ci95": [
+        0.8009,
+        0.9442
+      ]
+    },
+    "by_category": {
+      "dos": {
+        "n": 6,
+        "ast_blocked": {
+          "n": 6,
+          "hit": 4,
+          "rate": 0.6667,
+          "ci95": [
+            0.3,
+            0.9032
+          ]
+        },
+        "guard_blocked": {
+          "n": 6,
+          "hit": 5,
+          "rate": 0.8333,
+          "ci95": [
+            0.4365,
+            0.9699
+          ]
+        },
+        "layered_blocked": {
+          "n": 6,
+          "hit": 5,
+          "rate": 0.8333,
+          "ci95": [
+            0.4365,
+            0.9699
+          ]
+        }
+      },
+      "file_access": {
+        "n": 6,
+        "ast_blocked": {
+          "n": 6,
+          "hit": 4,
+          "rate": 0.6667,
+          "ci95": [
+            0.3,
+            0.9032
+          ]
+        },
+        "guard_blocked": {
+          "n": 6,
+          "hit": 6,
+          "rate": 1.0,
+          "ci95": [
+            0.6097,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 6,
+          "hit": 6,
+          "rate": 1.0,
+          "ci95": [
+            0.6097,
+            1.0
+          ]
+        }
+      },
+      "function": {
+        "n": 7,
+        "ast_blocked": {
+          "n": 7,
+          "hit": 5,
+          "rate": 0.7143,
+          "ci95": [
+            0.3589,
+            0.9178
+          ]
+        },
+        "guard_blocked": {
+          "n": 7,
+          "hit": 7,
+          "rate": 1.0,
+          "ci95": [
+            0.6457,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 7,
+          "hit": 7,
+          "rate": 1.0,
+          "ci95": [
+            0.6457,
+            1.0
+          ]
+        }
+      },
+      "limit": {
+        "n": 6,
+        "ast_blocked": {
+          "n": 6,
+          "hit": 0,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.3903
+          ]
+        },
+        "guard_blocked": {
+          "n": 6,
+          "hit": 0,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.3903
+          ]
+        },
+        "layered_blocked": {
+          "n": 6,
+          "hit": 0,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.3903
+          ]
+        }
+      },
+      "malformed": {
+        "n": 5,
+        "ast_blocked": {
+          "n": 5,
+          "hit": 5,
+          "rate": 1.0,
+          "ci95": [
+            0.5655,
+            1.0
+          ]
+        },
+        "guard_blocked": {
+          "n": 5,
+          "hit": 5,
+          "rate": 1.0,
+          "ci95": [
+            0.5655,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 5,
+          "hit": 5,
+          "rate": 1.0,
+          "ci95": [
+            0.5655,
+            1.0
+          ]
+        }
+      },
+      "pii": {
+        "n": 30,
+        "ast_blocked": {
+          "n": 30,
+          "hit": 0,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.1135
+          ]
+        },
+        "guard_blocked": {
+          "n": 30,
+          "hit": 29,
+          "rate": 0.9667,
+          "ci95": [
+            0.8333,
+            0.9941
+          ]
+        },
+        "layered_blocked": {
+          "n": 30,
+          "hit": 29,
+          "rate": 0.9667,
+          "ci95": [
+            0.8333,
+            0.9941
+          ]
+        }
+      },
+      "pii_oracle": {
+        "n": 9,
+        "ast_blocked": {
+          "n": 9,
+          "hit": 0,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2992
+          ]
+        },
+        "guard_blocked": {
+          "n": 9,
+          "hit": 9,
+          "rate": 1.0,
+          "ci95": [
+            0.7008,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 9,
+          "hit": 9,
+          "rate": 1.0,
+          "ci95": [
+            0.7008,
+            1.0
+          ]
+        }
+      },
+      "pragma": {
+        "n": 5,
+        "ast_blocked": {
+          "n": 5,
+          "hit": 4,
+          "rate": 0.8,
+          "ci95": [
+            0.3755,
+            0.9638
+          ]
+        },
+        "guard_blocked": {
+          "n": 5,
+          "hit": 5,
+          "rate": 1.0,
+          "ci95": [
+            0.5655,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 5,
+          "hit": 5,
+          "rate": 1.0,
+          "ci95": [
+            0.5655,
+            1.0
+          ]
+        }
+      },
+      "schema": {
+        "n": 8,
+        "ast_blocked": {
+          "n": 8,
+          "hit": 7,
+          "rate": 0.875,
+          "ci95": [
+            0.5291,
+            0.9776
+          ]
+        },
+        "guard_blocked": {
+          "n": 8,
+          "hit": 8,
+          "rate": 1.0,
+          "ci95": [
+            0.6756,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 8,
+          "hit": 8,
+          "rate": 1.0,
+          "ci95": [
+            0.6756,
+            1.0
+          ]
+        }
+      },
+      "stacked": {
+        "n": 6,
+        "ast_blocked": {
+          "n": 6,
+          "hit": 6,
+          "rate": 1.0,
+          "ci95": [
+            0.6097,
+            1.0
+          ]
+        },
+        "guard_blocked": {
+          "n": 6,
+          "hit": 6,
+          "rate": 1.0,
+          "ci95": [
+            0.6097,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 6,
+          "hit": 6,
+          "rate": 1.0,
+          "ci95": [
+            0.6097,
+            1.0
+          ]
+        }
+      },
+      "system": {
+        "n": 7,
+        "ast_blocked": {
+          "n": 7,
+          "hit": 7,
+          "rate": 1.0,
+          "ci95": [
+            0.6457,
+            1.0
+          ]
+        },
+        "guard_blocked": {
+          "n": 7,
+          "hit": 7,
+          "rate": 1.0,
+          "ci95": [
+            0.6457,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 7,
+          "hit": 7,
+          "rate": 1.0,
+          "ci95": [
+            0.6457,
+            1.0
+          ]
+        }
+      },
+      "tautology": {
+        "n": 3,
+        "ast_blocked": {
+          "n": 3,
+          "hit": 3,
+          "rate": 1.0,
+          "ci95": [
+            0.4385,
+            1.0
+          ]
+        },
+        "guard_blocked": {
+          "n": 3,
+          "hit": 0,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.5615
+          ]
+        },
+        "layered_blocked": {
+          "n": 3,
+          "hit": 3,
+          "rate": 1.0,
+          "ci95": [
+            0.4385,
+            1.0
+          ]
+        }
+      },
+      "union": {
+        "n": 2,
+        "ast_blocked": {
+          "n": 2,
+          "hit": 2,
+          "rate": 1.0,
+          "ci95": [
+            0.3424,
+            1.0
+          ]
+        },
+        "guard_blocked": {
+          "n": 2,
+          "hit": 2,
+          "rate": 1.0,
+          "ci95": [
+            0.3424,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 2,
+          "hit": 2,
+          "rate": 1.0,
+          "ci95": [
+            0.3424,
+            1.0
+          ]
+        }
+      },
+      "write": {
+        "n": 19,
+        "ast_blocked": {
+          "n": 19,
+          "hit": 19,
+          "rate": 1.0,
+          "ci95": [
+            0.8318,
+            1.0
+          ]
+        },
+        "guard_blocked": {
+          "n": 19,
+          "hit": 19,
+          "rate": 1.0,
+          "ci95": [
+            0.8318,
+            1.0
+          ]
+        },
+        "layered_blocked": {
+          "n": 19,
+          "hit": 19,
+          "rate": 1.0,
+          "ci95": [
+            0.8318,
+            1.0
+          ]
+        }
+      }
+    },
+    "escaped_both_layers": [
+      {
+        "id": "pii_comment",
+        "category": "pii"
+      },
+      {
+        "id": "dos_cross_join",
+        "category": "dos"
+      }
+    ],
+    "benign": {
+      "n": 60,
+      "false_positives": [],
+      "false_positive_rate": {
+        "n": 60,
+        "hit": 0,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0602
+        ]
+      }
+    }
+  }
+}

@@ -21,6 +21,7 @@ sqlagent-server = "sqlagent.server:main"
 sqlagent-ask = "sqlagent.agent:main"
 sqlagent-eval = "sqlagent.evaluate:main"
 sqlagent-redteam = "sqlagent.redteam:main"
+sqlagent-ast-eval = "sqlagent.ast_eval:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
