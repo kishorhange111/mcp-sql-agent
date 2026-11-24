@@ -57,7 +57,12 @@ def evaluate_redteam(
             escaped.append({"id": attack["id"], "category": attack["category"]})
 
     by_category = {
-        name: {"n": c["n"], "ast_blocked": _rate(c["ast"], c["n"]), "guard_blocked": _rate(c["guard"], c["n"]), "layered_blocked": _rate(c["layered"], c["n"])}
+        name: {
+            "n": c["n"],
+            "ast_blocked": _rate(c["ast"], c["n"]),
+            "guard_blocked": _rate(c["guard"], c["n"]),
+            "layered_blocked": _rate(c["layered"], c["n"]),
+        }
         for name, c in sorted(cats.items())
     }
     ast_scope = [a for a in attacks if a["category"] not in POLICY_CATEGORIES]

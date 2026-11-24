@@ -28,14 +28,40 @@ Model: Qwen2.5-1.5B-Instruct on CPU, greedy decoding. 60 hand-written Chinook qu
 
 60 questions on one small schema is a small sample, as the intervals show. This isn't a text-to-SQL benchmark.
 
+## Architecture
+
+```mermaid
+flowchart LR
+    U[Question] --> A[LangGraph agent<br/>generate, repair loop]
+    A -->|SQL| M[MCP server: SqlTools]
+    M --> V[AST validator<br/>read-only, injection]
+    V --> G[Policy guard<br/>tables, columns, functions, LIMIT]
+    G --> D[(Locked-down SQLite<br/>read-only, authorizer, timeout, row cap)]
+    D --> L[Audit log<br/>tamper-evident JSONL]
+    D --> A
+```
+
+Each layer is tested alone, and `sqlagent-ast-eval` scores the static layers per attack category with 95 % intervals and a false-positive rate on the benign question set.
+
 ## Run it
 
 ```bash
 pip install -e ".[dev,local]"
 pytest
 sqlagent-redteam --out results/redteam.json
+sqlagent-ast-eval --out results/ast_eval.json   # static-layer red-team + false positives, fully offline
 sqlagent-eval --model Qwen/Qwen2.5-1.5B-Instruct --out results/qwen2.5-1.5b
 sqlagent-server --db data/chinook.sqlite --audit audit.jsonl
 ```
 
 Chinook is by Luis Rocha, under its own permissive licence (github.com/lerocha/chinook-database).
+
+## Docker
+
+```bash
+docker build -t mcp-sql-agent .
+docker run --rm -i -v "$PWD/audit:/audit" mcp-sql-agent        # MCP server over stdio, runs as a non-root user
+docker run --rm --entrypoint sqlagent-ast-eval mcp-sql-agent   # offline defence evaluation
+```
+
+CI runs lint, the full test suite (including the attack suite), the defence-evaluation smoke step and a Docker build on every push and pull request.
