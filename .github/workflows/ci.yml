@@ -24,3 +24,14 @@ jobs:
           ruff format --check .
       - name: Test (includes the attack suite)
         run: pytest
+      - name: Defence evaluation smoke (injection corpus + false positives)
+        run: sqlagent-ast-eval --out /tmp/ast_eval.json
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t mcp-sql-agent:ci .
+      - name: Image starts and exposes the CLI entry point
+        run: docker run --rm --entrypoint sqlagent-ast-eval mcp-sql-agent:ci --benign eval/questions.jsonl
